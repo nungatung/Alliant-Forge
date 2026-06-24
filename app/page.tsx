@@ -1,65 +1,176 @@
-import Image from "next/image";
+import Navbar from "@/components/Navbar";
+import HeroCarousel from "@/components/HeroCarousel";
+import MissionSection from "@/components/MissionSection";
+import PartnersMarquee from "@/components/PartnersMarquee";
+import BlogSection from "@/components/BlogSection";
+import ImpactStats from "@/components/ImpactStats";
+import GetInvolved from "@/components/GetInvolved";
+import Footer from "@/components/Footer";
+import HowWeWorkBanner from "@/components/HowWeWorkBanner";
 
-export default function Home() {
+// ─── Pillar Data ────────────────────────────────────────────────────
+// Structured as typed prop array for easy content updates
+
+const pillars = [
+  {
+    id: 1,
+    title: "Empowering Tomorrow's Innovators",
+    subtitle: "Women & Youth in STEM",
+    description:
+      "We dismantle barriers to STEM education for women and young people through targeted scholarships, mentorship networks, and hands-on innovation labs in underserved communities.",
+    accentColor: "#4F6C8A",
+    imageUrl:
+      "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=1200&q=80",
+    details: [
+      {
+        label: "Scholarship Programs",
+        content:
+          "Our flagship STEM scholarship fund has supported over 3,200 students across 12 countries, with 68% of recipients being the first in their families to attend university.",
+      },
+      {
+        label: "Mentorship Networks",
+        content:
+          "We pair emerging talent with industry professionals through a structured 12-month mentorship program, resulting in 85% of mentees securing employment or advanced study placements.",
+      },
+      {
+        label: "Innovation Labs",
+        content:
+          "Community-based maker spaces equipped with 3D printers, robotics kits, and coding stations serve as creative hubs where young innovators prototype solutions to local challenges.",
+      },
+    ],
+  },
+  {
+    id: 2,
+    title: "Innovation & Sustainable Infrastructure",
+    subtitle: "Renewable Energy & Smart Cities",
+    description:
+      "From solar microgrids to smart urban planning, we deploy cutting-edge infrastructure solutions that reduce environmental impact while expanding economic opportunity.",
+    accentColor: "#D5AA72",
+    imageUrl:
+      "https://images.unsplash.com/photo-1509391366360-2e959784a276?w=1200&q=80",
+    details: [
+      {
+        label: "Solar Microgrids",
+        content:
+          "Decentralized solar power systems now serve 47 rural communities across three continents, providing reliable electricity to schools, clinics, and small businesses previously off the grid.",
+      },
+      {
+        label: "Smart City Pilots",
+        content:
+          "Our urban innovation program partners with municipal governments to implement IoT-enabled waste management, traffic optimization, and air quality monitoring in rapidly growing cities.",
+      },
+      {
+        label: "Green Building Standards",
+        content:
+          "We advocate for and implement passive design principles and sustainable materials in public infrastructure, reducing lifetime carbon emissions by an average of 40% per project.",
+      },
+    ],
+  },
+  {
+    id: 3,
+    title: "Social Impact & Community Development",
+    subtitle: "Local Projects for Change",
+    description:
+      "True impact begins at the community level. We fund and co-design locally led initiatives that address education gaps, health access, and economic resilience from the ground up.",
+    accentColor: "#98A48B",
+    imageUrl:
+      "https://images.unsplash.com/photo-1559027615-cd4628902d4a?w=1200&q=80",
+    details: [
+      {
+        label: "Community Grants",
+        content:
+          "Our participatory grant-making program puts funding decisions in the hands of community committees, ensuring resources flow to the priorities identified by residents themselves.",
+      },
+      {
+        label: "Health Access Initiatives",
+        content:
+          "Mobile clinic partnerships and telemedicine networks have expanded primary healthcare access to 89 remote villages, serving over 45,000 patients annually.",
+      },
+      {
+        label: "Economic Resilience",
+        content:
+          "Microenterprise development programs combine seed funding with business training, helping local entrepreneurs launch sustainable ventures that create jobs within their communities.",
+      },
+    ],
+  },
+  {
+    id: 4,
+    title: "Partnerships & Collaboration",
+    subtitle: "Academia, Industry & Government",
+    description:
+      "We bridge sectors to create powerful coalitions. By aligning academic research, private sector resources, and public policy, we amplify impact far beyond what any single organization could achieve alone.",
+    accentColor: "#CEC8AE",
+    imageUrl:
+      "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=1200&q=80",
+    details: [
+      {
+        label: "Academic Alliances",
+        content:
+          "Research partnerships with 23 universities generate evidence-based insights that inform our program design and contribute to peer-reviewed publications on sustainable development.",
+      },
+      {
+        label: "Industry Engagement",
+        content:
+          "Corporate partners provide technology, expertise, and funding while gaining access to emerging markets and talent pipelines — creating shared value for business and society.",
+      },
+      {
+        label: "Policy Advocacy",
+        content:
+          "We work with government stakeholders to shape enabling policy environments, from STEM education curricula to renewable energy feed-in tariffs that accelerate clean technology adoption.",
+      },
+    ],
+  },
+  {
+    id: 5,
+    title: "Skills Development & Education",
+    subtitle: "Training & Scholarships",
+    description:
+      "Knowledge is the foundation of self-determination. We deliver vocational training, digital literacy programs, and professional development pathways that equip individuals to thrive in a changing economy.",
+    accentColor: "#7A6E5F",
+    imageUrl:
+      "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=1200&q=80",
+    details: [
+      {
+        label: "Vocational Training",
+        content:
+          "Demand-driven skills programs in renewable energy installation, agricultural technology, and digital trades have graduated over 8,500 students with industry-recognized certifications.",
+      },
+      {
+        label: "Digital Literacy",
+        content:
+          "Foundational computing and internet skills training reaches populations often excluded from the digital economy, including older workers and rural women entrepreneurs.",
+      },
+      {
+        label: "Professional Development",
+        content:
+          "Executive education and leadership programs for mid-career professionals in the NGO and public sectors build management capacity and strategic thinking skills.",
+      },
+    ],
+  },
+];
+
+// ─── Home Page ──────────────────────────────────────────────────────
+
+export default function HomePage() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
+    <main className="min-h-screen bg-forge-bg">
+      <Navbar />
+
+      <HeroCarousel />
+
+      <MissionSection />
+
+      <HowWeWorkBanner />
+
+      <GetInvolved />
+      
+      <PartnersMarquee />
+      
+      <BlogSection />
+
+      {/* <ImpactStats />  */}
+
+      <Footer />
+    </main>
   );
 }

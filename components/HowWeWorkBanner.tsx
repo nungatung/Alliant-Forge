@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { motion } from 'framer-motion';
 
 interface WorkItem {
@@ -58,6 +58,51 @@ export default function HowWeWorkBanner() {
             {/* Content */}
             <div className="relative z-10 min-h-screen flex items-center">
                 <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20">
+                    {/* Mission: What We Do */}
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center mb-16 sm:mb-24">
+                        {/* Text Content */}
+                        <motion.div
+                            className="text-white"
+                            initial={{ opacity: 0, x: -30 }}
+                            whileInView={{ opacity: 1, x: 0 }}
+                            transition={{ duration: 0.6 }}
+                            viewport={{ once: true }}
+                        >
+                            <h2 className="text-4xl md:text-5xl font-bold mb-6">
+                                What We Do
+                            </h2>
+                            <p className="text-lg text-white/90 mb-4 leading-relaxed">
+                                Alliant Forge catalyzes sustainable development through innovation,
+                                collaboration, and empowerment. We bridge the gap between aspiration
+                                and action by connecting diverse stakeholders in pursuit of shared
+                                goals.
+                            </p>
+                            <p className="text-lg text-white/80 leading-relaxed">
+                                Our work spans women and youth in STEM, renewable energy infrastructure,
+                                community development, strategic partnerships, and skills training—all
+                                rooted in the belief that lasting change emerges from collective effort
+                                and intentional innovation.
+                            </p>
+                        </motion.div>
+
+                        {/* Image */}
+                        <motion.div
+                            initial={{ opacity: 0, x: 30 }}
+                            whileInView={{ opacity: 1, x: 0 }}
+                            transition={{ duration: 0.6 }}
+                            viewport={{ once: true }}
+                            className="relative"
+                        >
+                            <img
+                                src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=600&h=400&fit=crop"
+                                alt="Our Mission"
+                                className="w-full h-auto rounded-2xl shadow-lg"
+                            />
+                            <div className="absolute -bottom-4 -right-4 w-32 h-32 bg-af-light-beige rounded-2xl -z-10" />
+                        </motion.div>
+                    </div>
+
+                    {/* How We Work */}
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-20 items-center">
                         {/* Left Side: Title + Description + Button */}
                         <motion.div

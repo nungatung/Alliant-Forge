@@ -1,6 +1,5 @@
 import Navbar from "@/components/Navbar";
 import HeroCarousel from "@/components/HeroCarousel";
-import MissionSection from "@/components/MissionSection";
 import PartnersMarquee from "@/components/PartnersMarquee";
 import BlogSection from "@/components/BlogSection";
 import ImpactStats from "@/components/ImpactStats";
@@ -157,8 +156,6 @@ export default function HomePage() {
       <Navbar />
 
       <HeroCarousel />
-
-      <MissionSection />
 
       <HowWeWorkBanner />
 

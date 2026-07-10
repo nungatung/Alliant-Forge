@@ -18,13 +18,13 @@ export default function MissionSection() {
             <h2 className="text-4xl md:text-5xl font-bold text-af-muted-blue mb-6">
               What We Do
             </h2>
-            <p className="text-lg text-gray-700 mb-4 leading-relaxed">
+            <p className="text-lg text-#110f0fd8 mb-4 leading-relaxed">
               Alliant Forge catalyzes sustainable development through innovation,
               collaboration, and empowerment. We bridge the gap between aspiration
               and action by connecting diverse stakeholders in pursuit of shared
               goals.
             </p>
-            <p className="text-lg text-gray-600 leading-relaxed">
+            <p className="text-lg text-#110f0fd8 leading-relaxed">
               Our work spans women and youth in STEM, renewable energy infrastructure,
               community development, strategic partnerships, and skills training—all
               rooted in the belief that lasting change emerges from collective effort

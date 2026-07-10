@@ -1,74 +1,83 @@
 'use client';
 
 import React, { useState } from 'react';
-import { motion } from 'framer-motion';
+import Image from 'next/image';
 
-const partners = [
-  { id: 1, name: 'Tech Innovators' },
-  { id: 2, name: 'Green Future' },
-  { id: 3, name: 'Community First' },
-  { id: 4, name: 'Education Now' },
-  { id: 5, name: 'Global Partners' },
-  { id: 6, name: 'Sustainable Dev' },
+// Add your logos here — adjust 'scale' to make any logo bigger or smaller
+const partnerLogos = [
+  { name: 'African Union', src: '/partners/au-logo.png', scale: 1 },
+  { name: 'APS Canada', src: '/partners/aps-canada.png', scale: 1 },
+  { name: 'APS Africa', src: '/partners/aps-africa-1.png', scale: 1 },
+  { name: 'Solcare', src: '/partners/solcare-2.png', scale: 1.5 },
 ];
 
 export default function PartnersMarquee() {
-  const [hoveredId, setHoveredId] = useState<number | null>(null);
+  const [isPaused, setIsPaused] = useState(false);
 
   return (
-    <section className="py-16 md:py-20 bg-white border-t border-b border-gray-100">
+    <section className="py-16 md:py-20 bg-[#FFFAFA] border-t border-b border-gray-100">
       <div className="max-w-7xl mx-auto px-6">
-        <h3 className="text-2xl md:text-3xl font-bold text-af-muted-blue text-center mb-12">
-          Our Partners & Affiliates
+        <h3 className="text-2xl md:text-3xl font-bold text-gray-800 text-center mb-12">
+          Better Together With
         </h3>
 
-        {/* Marquee Container */}
-        <div className="relative overflow-hidden">
-          <motion.div
-            className="flex gap-8"
-            animate={{ x: [0, -50 * partners.length * 4] }}
-            transition={{
-              duration: 30,
-              repeat: Infinity,
-              ease: 'linear',
+        <div
+          className="overflow-hidden w-full relative max-w-5xl mx-auto select-none"
+          onMouseEnter={() => setIsPaused(true)}
+          onMouseLeave={() => setIsPaused(false)}
+        >
+          {/* Left fade */}
+          <div className="absolute left-0 top-0 h-full w-20 z-10 pointer-events-none bg-gradient-to-r from-[#FCFCFE] to-transparent" />
+
+          {/* Marquee track */}
+          <div
+            className="flex will-change-transform"
+            style={{
+              width: 'max-content',
+              animation: 'marqueeScroll 30s linear infinite',
+              animationPlayState: isPaused ? 'paused' : 'running',
             }}
           >
-            {/* Original set + duplicate for seamless loop */}
-            {[...partners, ...partners].map((partner, idx) => (
-              <motion.div
-                key={idx}
-                className="flex-shrink-0 w-48 h-32 bg-gray-200 rounded-lg flex items-center justify-center cursor-pointer relative group overflow-hidden"
-                onMouseEnter={() => setHoveredId(partner.id)}
-                onMouseLeave={() => setHoveredId(null)}
-                whileHover={{ scale: 1.05 }}
-              >
-                {/* Grayscale by default */}
-                <div
-                  className={`absolute inset-0 bg-gradient-to-br from-gray-300 to-gray-400 transition-all duration-300 ${
-                    hoveredId === partner.id ? 'opacity-0' : 'opacity-100'
-                  }`}
-                />
-
-                {/* Colored overlay on hover */}
-                <div
-                  className={`absolute inset-0 bg-gradient-to-br from-af-muted-blue to-af-golden-brown transition-all duration-300 ${
-                    hoveredId === partner.id ? 'opacity-100' : 'opacity-0'
-                  }`}
-                />
-
-                {/* Text */}
-                <p className="relative z-10 font-semibold text-gray-700 text-center px-4 group-hover:text-white transition-colors duration-300">
-                  {partner.name}
-                </p>
-              </motion.div>
+            {/* Repeat 3 times for seamless loop */}
+            {[0, 1, 2].map((setIdx) => (
+              <div key={setIdx} className="flex items-center shrink-0">
+                {partnerLogos.map((logo, idx) => (
+                  <div
+                    key={`${setIdx}-${logo.name}-${idx}`}
+                    className="shrink-0 flex items-center justify-center"
+                    style={{
+                      width: `${220 * logo.scale}px`,
+                      height: `${120 * logo.scale}px`,
+                      position: 'relative',
+                      marginLeft: '80px',
+                      marginRight: '80px',
+                    }}
+                  >
+                    <Image
+                      src={logo.src}
+                      alt={logo.name}
+                      fill
+                      className="object-contain"
+                      draggable={false}
+                      sizes="(max-width: 768px) 200px, 280px"
+                    />
+                  </div>
+                ))}
+              </div>
             ))}
-          </motion.div>
+          </div>
 
-          {/* Fade edges */}
-          <div className="absolute left-0 top-0 bottom-0 w-20 bg-gradient-to-r from-white to-transparent pointer-events-none" />
-          <div className="absolute right-0 top-0 bottom-0 w-20 bg-gradient-to-l from-white to-transparent pointer-events-none" />
+          {/* Right fade */}
+          <div className="absolute right-0 top-0 h-full w-20 md:w-40 z-10 pointer-events-none bg-gradient-to-l from-[#FCFCFE] to-transparent" />
         </div>
       </div>
+
+      <style jsx>{`
+        @keyframes marqueeScroll {
+          0% { transform: translateX(0); }
+          100% { transform: translateX(-33.333%); }
+        }
+      `}</style>
     </section>
   );
 }

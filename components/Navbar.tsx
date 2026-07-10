@@ -1,170 +1,283 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
-import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
+
+
+const linkColors: Record<string, string> = {
+  'Home': '#4F6C8A',
+  'Who We Are': '#D5AA72',
+  'Our Strategic Pillars': '#98A48B',
+  'All Pages': '#D5AA72',
+  'Make An Impact': '#4F6C8A',
+  'Get In Touch': '#D5AA72',
+};
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [isArrowFlipped, setIsArrowFlipped] = useState(false);
+  const navRef = useRef<HTMLDivElement | null>(null);
+  const [navHeight, setNavHeight] = useState(0);
+  const [hoveredLink, setHoveredLink] = useState<string | null>(null);
 
+  
   useEffect(() => {
-    const handleScroll = () => setIsScrolled(window.scrollY > 50);
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
+    const onScroll = () => setIsScrolled(window.scrollY > 50);
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
-  // Close on resize to desktop so stale open state doesn't carry over
+ 
   useEffect(() => {
-    const handleResize = () => {
-      if (window.innerWidth >= 640) setIsMenuOpen(false);
+    const measure = () => setNavHeight(navRef.current?.offsetHeight ?? 0);
+    measure();
+    window.addEventListener('resize', measure);
+    return () => window.removeEventListener('resize', measure);
+  }, []);
+
+  
+  useEffect(() => {
+    const onResize = () => {
+      if (window.innerWidth >= 768) setIsMenuOpen(false);
     };
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
+    window.addEventListener('resize', onResize);
+    return () => window.removeEventListener('resize', onResize);
   }, []);
 
-  const menuItems = [
+  const mainLinks = [
     { label: 'Home', href: '/' },
-    { label: 'About Us', href: '#about' },
-    { label: 'Our Work', href: '#work' },
-    { label: 'SDG Alignment', href: '#sdg' },
-    { label: 'Partner With Us', href: '#partnerships' },
+    { label: 'Who We Are', href: '#about' },
+    { label: 'Strategic Pillars', href: '/strategicpillars' },
+  ];
+
+  const moreLinks = [
+    { label: 'Make An Impact', href: '#impact' },
     { label: 'Get In Touch', href: '#contact' },
   ];
 
-  const closeMenu = () => setIsMenuOpen(false);
-  const toggleMenu = () => setIsMenuOpen((prev) => !prev);
+  const closeAll = () => {
+    setIsMenuOpen(false);
+    setIsDropdownOpen(false);
+  };
 
   return (
     <>
       <nav
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-          isScrolled ? 'bg-white/30 backdrop-blur-md shadow-sm' : 'bg-transparent'
-        }`}
+        ref={navRef}
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ease-out ${isScrolled ? 'backdrop-blur-md bg-white/90 shadow-sm' : 'bg-white/95'}`}
+        style={{ borderBottom: '3px solid rgba(213,170,114,0.25)' }}
       >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 py-4 flex items-center justify-between">
+        <div className="max-w-[1440px] mx-auto px-3 sm:px-4 lg:px-8 py-2 flex items-center justify-between">
+          {/* Left: AF Logo */}
+          <div className="relative" style={{ width: 'clamp(220px, 35vw, 480px)', height: 'clamp(55px, 10vw, 150px)' }}>
+            <Image
+              src="/AF logo-2.png"
+              alt="Alliant Forge"
+              width={450}
+              height={120}
+              className="object-contain object-left -mt-4 -mb-8 -mr-8 "
+              priority
+            />
+          </div>
 
-          {/* Logo
-            ─────────────────────────────────────────────────────────
-            FIX: `relative` is REQUIRED on the parent of any <Image fill>.
-            Without it, Next.js positions the image absolutely within the
-            nearest positioned ancestor (the fixed <nav>), stretching it
-            across the full navbar and silently swallowing all click/touch
-            events — including the hamburger button.
-            ───────────────────────────────────────────────────────── */}
-          <Link href="/" className="flex items-center hover:opacity-80 transition-opacity flex-shrink-0">
-            <div className="relative w-[150px] sm:w-[180px] md:w-[300px] h-[40px] sm:h-[50px] md:h-[90px]">
-              <Image
-                src="/logo-1-2.png"
-                alt="Alliant Forge"
-                width={300}
-                height={90}
-                className="object-contain object-left "
-                priority
-              />
-            </div>
-          </Link>
-
-          {/* Right side */}
-          <div className="flex items-center gap-2 sm:gap-4 md:gap-6 ml-auto">
-
-            {/* Desktop: Menu dropdown */}
-            <div className="relative hidden sm:block">
-              <button
-                onClick={toggleMenu}
-                className="flex items-center gap-2 px-3 sm:px-4 py-2 text-af-muted-blue hover:text-af-golden-brown transition-colors font-semibold text-sm md:text-base cursor-pointer"
-              >
-                Menu
-                <motion.svg
-                  className="w-4 h-4 sm:w-5 sm:h-5"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                  animate={{ rotate: isMenuOpen ? 180 : 0 }}
-                  transition={{ duration: 0.3 }}
+          {/* Center: Desktop + Tablet Links */}
+          <div className="hidden md:flex flex-1 items-center justify-end gap-1 lg:gap-3 xl:gap-1">
+            {mainLinks.map((link) => {
+              const hoverColor = linkColors[link.label] || '#4F6C8A';
+              return (
+                <a
+                  key={link.label}
+                  href={link.href}
+                  className="px-2 lg:px-6 py-2 text-sm lg:text-base font-medium rounded-md transition-colors duration-200 whitespace-nowrap"
+                  style={{
+                    color: hoveredLink === link.label ? hoverColor : '#374151',
+                  }}
+                  onMouseEnter={() => setHoveredLink(link.label)}
+                  onMouseLeave={() => setHoveredLink(null)}
+                  onClick={closeAll}
                 >
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
-                </motion.svg>
+                  {link.label}
+                </a>
+              );
+            })}
+
+            {/* All Pages dropdown */}
+            <div
+              className="relative"
+              onMouseEnter={() => {
+                setIsDropdownOpen(true);
+                setIsArrowFlipped(true);
+                setHoveredLink('All Pages');
+              }}
+              onMouseLeave={() => {
+                setIsDropdownOpen(false);
+                setIsArrowFlipped(false);
+                setHoveredLink(null);
+              }}
+            >
+              <button
+                onClick={() => setIsDropdownOpen((s) => !s)}
+                className="flex items-center gap-1 px-2 lg:px-3 py-2 text-sm lg:text-base font-medium rounded-md transition-colors duration-200 whitespace-nowrap cursor-pointer"
+                style={{
+                  color: hoveredLink === 'All Pages' ? (linkColors['All Pages'] || '#D5AA72') : '#374151',
+                }}
+                aria-expanded={isDropdownOpen}
+              >
+                All Pages
+                <svg
+                  width="14"
+                  height="14"
+                  viewBox="0 0 14 14"
+                  fill="none"
+                  style={{
+                    transform: isArrowFlipped ? 'rotate(180deg)' : 'rotate(0deg)',
+                    transition: 'transform 0.25s ease',
+                    marginTop: '1px',
+                    flexShrink: 0,
+                  }}
+                >
+                  <path
+                    d="M3.5 5.25L7 8.75L10.5 5.25"
+                    stroke="currentColor"
+                    strokeWidth="1.5"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
               </button>
 
               <AnimatePresence>
-                {isMenuOpen && (
+                {isDropdownOpen && (
                   <motion.div
-                    initial={{ opacity: 0, y: -10 }}
+                    key="dropdown-panel"
+                    initial={{ opacity: 0, y: -6 }}
                     animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -10 }}
-                    transition={{ duration: 0.2 }}
-                    className="absolute top-full right-0 mt-2 w-48 bg-white rounded-lg shadow-xl border border-gray-100 overflow-hidden z-50"
+                    exit={{ opacity: 0, y: -6 }}
+                    transition={{ duration: 0.16 }}
+                    className="absolute right-0 mt-1 w-52 bg-white rounded-lg shadow-lg border border-gray-100 z-40 overflow-hidden"
                   >
-                    <div className="py-2">
-                      {menuItems.map((item, idx) => (
-                        <motion.a
-                          key={item.label}
-                          href={item.href}
-                          onClick={closeMenu}
-                          className="block px-6 py-3 text-af-muted-blue text-sm font-medium"
-                          initial={{ opacity: 0, x: -10 }}
-                          animate={{ opacity: 1, x: 0 }}
-                          transition={{ delay: idx * 0.05 }}
-                          whileHover={{ scale: 1.05, x: 8 }}
-                        >
-                          {item.label}
-                        </motion.a>
-                      ))}
+                    <div className="py-1.5">
+                      {moreLinks.map((item) => {
+                        const hoverColor = linkColors[item.label] || '#4F6C8A';
+                        return (
+                          <a
+                            key={item.label}
+                            href={item.href}
+                            onClick={() => setIsDropdownOpen(false)}
+                            className="block px-4 py-2.5 text-sm transition-colors duration-200"
+                            style={{
+                              color: hoveredLink === item.label ? hoverColor : '#374151',
+                            }}
+                            onMouseEnter={() => setHoveredLink(item.label)}
+                            onMouseLeave={() => setHoveredLink('All Pages')}
+                          >
+                            {item.label}
+                          </a>
+                        );
+                      })}
                     </div>
                   </motion.div>
                 )}
               </AnimatePresence>
             </div>
 
-            {/* Desktop: Donate button */}
-            <div className="hidden sm:block">
-              <div className="donate-btn-wrapper hover:scale-105 transition-all duration-300 active:scale-100 ">
-                <button className="text-sm md:text-base cursor-pointer">Donate Now</button>
-              </div>
-            </div>
+            {/* ─── Separator ─── */}
+            <div className="hidden md:block w-px h-6 bg-gray-300 mx-2" />
 
-            {/* Mobile: Hamburger / Close toggle
-              ───────────────────────────────────────────────────────
-              No stopPropagation needed — the button sits above the
-              overlay in z-index (z-50 nav > z-30 overlay), so clicks
-              always reach the button first.
-              ─────────────────────────────────────────────────────── */}
+            {/* ─── Social Icons ─── */}
+            <div className="hidden md:flex items-center gap-2">
+              {/* Facebook */}
+              <a
+                href="https://facebook.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-10 h-10 flex items-center justify-center rounded-lg bg-white shadow-md shadow-gray-200 group transition-all duration-300 hover:shadow-lg"
+                aria-label="Facebook"
+              >
+                <svg className="transition-all duration-300 group-hover:scale-110" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="#1877F2">
+                  <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                </svg>
+              </a>
+
+              {/* Instagram */}
+              <a
+                href="https://instagram.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-10 h-10 flex items-center justify-center rounded-lg bg-white shadow-md shadow-gray-200 group transition-all duration-300 hover:shadow-lg"
+                aria-label="Instagram"
+              >
+                <svg className="transition-all duration-300 group-hover:scale-110" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="#E4405F">
+                  <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                </svg>
+              </a>
+
+              {/* X / Twitter — commented out for now */}
+              {/*
+              <a
+                href="https://x.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-10 h-10 flex items-center justify-center rounded-lg bg-white shadow-md shadow-gray-200 group transition-all duration-300 hover:shadow-lg"
+                aria-label="X (Twitter)"
+              >
+                <svg className="transition-all duration-300 group-hover:scale-110" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="black">
+                  <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                </svg>
+              </a>
+              */}
+
+              {/* LinkedIn */}
+              <a
+                href="https://linkedin.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-10 h-10 flex items-center justify-center rounded-lg bg-white shadow-md shadow-gray-200 group transition-all duration-300 hover:shadow-lg"
+                aria-label="LinkedIn"
+              >
+                <svg className="transition-all duration-300 group-hover:scale-110" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="#0A66C2">
+                  <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                </svg>
+              </a>
+            </div>
+          </div>
+
+          {/* ─── Right: Mobile Hamburger ─── */}
+          <div className="md:hidden flex-shrink-0 ml-2">
             <button
-              onClick={toggleMenu}
-              className="sm:hidden flex items-center justify-center w-10 h-10 text-af-muted-blue hover:text-af-golden-brown transition-colors flex-shrink-0"
+              onClick={() => setIsMenuOpen((s) => !s)}
               aria-label={isMenuOpen ? 'Close menu' : 'Open menu'}
-              aria-expanded={isMenuOpen}
+              className="p-2 rounded text-gray-700 hover:bg-gray-100 transition-colors"
             >
               <AnimatePresence mode="wait" initial={false}>
                 {isMenuOpen ? (
-                  /* X icon */
                   <motion.svg
-                    key="close"
+                    key="x"
                     className="w-6 h-6"
+                    viewBox="0 0 24 24"
                     fill="none"
                     stroke="currentColor"
-                    viewBox="0 0 24 24"
-                    initial={{ opacity: 0, rotate: -90 }}
-                    animate={{ opacity: 1, rotate: 0 }}
-                    exit={{ opacity: 0, rotate: 90 }}
-                    transition={{ duration: 0.18 }}
+                    initial={{ rotate: -90, opacity: 0 }}
+                    animate={{ rotate: 0, opacity: 1 }}
+                    exit={{ rotate: 90, opacity: 0 }}
+                    transition={{ duration: 0.15 }}
                   >
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
                   </motion.svg>
                 ) : (
-                  /* Hamburger icon */
                   <motion.svg
-                    key="open"
+                    key="hamb"
                     className="w-6 h-6"
+                    viewBox="0 0 24 24"
                     fill="none"
                     stroke="currentColor"
-                    viewBox="0 0 24 24"
-                    initial={{ opacity: 0, rotate: 90 }}
-                    animate={{ opacity: 1, rotate: 0 }}
-                    exit={{ opacity: 0, rotate: -90 }}
-                    transition={{ duration: 0.18 }}
+                    initial={{ rotate: 90, opacity: 0 }}
+                    animate={{ rotate: 0, opacity: 1 }}
+                    exit={{ rotate: -90, opacity: 0 }}
+                    transition={{ duration: 0.15 }}
                   >
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
                   </motion.svg>
@@ -175,70 +288,107 @@ export default function Navbar() {
         </div>
       </nav>
 
-      {/* Mobile menu panel + backdrop */}
+      {/* ─── Mobile Full-screen Menu ─── */}
       <AnimatePresence>
         {isMenuOpen && (
           <>
-            
             <motion.div
-              key="mobile-backdrop"
-              className="fixed inset-0 z-30 bg-black/10 backdrop-blur-sm sm:hidden"
-              onClick={closeMenu}
+              className="fixed inset-0 z-30 bg-black/20 md:hidden"
+              onClick={() => setIsMenuOpen(false)}
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              transition={{ duration: 0.2 }}
             />
 
-            {/* Slide-down panel */}
             <motion.div
-              key="mobile-panel"
-              className="fixed top-[73px] left-0 right-0 z-40 bg-white rounded-b-lg shadow-lg sm:hidden"
-              initial={{ opacity: 0, y: -16 }}
+              className="fixed left-0 right-0 z-40 bg-white shadow-lg md:hidden rounded-b-xl"
+              style={{ top: navHeight || 64 }}
+              initial={{ opacity: 0, y: -10 }}
               animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -16 }}
-              transition={{ duration: 0.22, ease: 'easeOut' }}
+              exit={{ opacity: 0, y: -10 }}
+              transition={{ duration: 0.2 }}
             >
-              <div className="py-4 px-4 max-w-7xl mx-auto">
-                <div className="space-y-1 mb-4">
-                  {menuItems.map((item, idx) => (
+              <div className="px-5 py-4 space-y-1">
+                {[...mainLinks, ...moreLinks].map((item, idx) => {
+                  const hoverColor = linkColors[item.label] || '#4F6C8A';
+                  return (
                     <motion.a
                       key={item.label}
                       href={item.href}
-                      onClick={closeMenu}
-                      className="block px-4 py-3 text-af-muted-blue text-sm font-medium hover:bg-af-background rounded-lg transition-colors"
-                      initial={{ opacity: 0, x: -10 }}
+                      onClick={() => setIsMenuOpen(false)}
+                      className="block py-3 px-3 rounded-lg text-base font-medium transition-colors duration-200"
+                      style={{
+                        color: hoveredLink === item.label ? hoverColor : '#374151',
+                      }}
+                      onMouseEnter={() => setHoveredLink(item.label)}
+                      onMouseLeave={() => setHoveredLink(null)}
+                      initial={{ opacity: 0, x: -12 }}
                       animate={{ opacity: 1, x: 0 }}
-                      transition={{ delay: idx * 0.05 }}
-                      whileHover={{ x: 8 }}
+                      transition={{ delay: idx * 0.04 }}
                     >
                       {item.label}
                     </motion.a>
-                  ))}
-                </div>
+                  );
+                })}
+              </div>
 
-                <div className="pt-4 border-t border-gray-100">
-                  <div className="donate-btn-wrapper hover:scale-105 transition-all duration-300 active:scale-100 w-full">
-                    <button onClick={closeMenu} className="w-full text-sm">Donate Now</button>
-                  </div>
+              {/* Mobile Social Icons */}
+              <div className="px-5 py-4 border-t border-gray-100">
+                <div className="flex items-center justify-center gap-3">
+                  <a
+                    href="https://facebook.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-10 h-10 flex items-center justify-center rounded-lg bg-white shadow-md shadow-gray-200 group transition-all duration-300 hover:shadow-lg"
+                    aria-label="Facebook"
+                  >
+                    <svg className="transition-all duration-300 group-hover:scale-110" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="#1877F2">
+                      <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                    </svg>
+                  </a>
+
+                  <a
+                    href="https://instagram.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-10 h-10 flex items-center justify-center rounded-lg bg-white shadow-md shadow-gray-200 group transition-all duration-300 hover:shadow-lg"
+                    aria-label="Instagram"
+                  >
+                    <svg className="transition-all duration-300 group-hover:scale-110" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="#E4405F">
+                      <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                    </svg>
+                  </a>
+
+                  {/* X / Twitter — commented out for now */}
+                  {/*
+                  <a
+                    href="https://x.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-10 h-10 flex items-center justify-center rounded-lg bg-white shadow-md shadow-gray-200 group transition-all duration-300 hover:shadow-lg"
+                    aria-label="X (Twitter)"
+                  >
+                    <svg className="transition-all duration-300 group-hover:scale-110" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="black">
+                      <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                    </svg>
+                  </a>
+                  */}
+
+                  <a
+                    href="https://linkedin.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-10 h-10 flex items-center justify-center rounded-lg bg-white shadow-md shadow-gray-200 group transition-all duration-300 hover:shadow-lg"
+                    aria-label="LinkedIn"
+                  >
+                    <svg className="transition-all duration-300 group-hover:scale-110" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="#0A66C2">
+                      <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                    </svg>
+                  </a>
                 </div>
               </div>
             </motion.div>
           </>
-        )}
-      </AnimatePresence>
-
-      {/* Desktop overlay*/}
-      <AnimatePresence>
-        {isMenuOpen && (
-          <motion.div
-            key="desktop-overlay"
-            className="fixed inset-0 z-30 hidden sm:block"
-            onClick={closeMenu}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-          />
         )}
       </AnimatePresence>
     </>

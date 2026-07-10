@@ -13,31 +13,13 @@ interface EngagementPath {
 
 const paths: EngagementPath[] = [
   {
-    title: "Volunteer",
+    title: "Make an Impact",
     description:
-      "Share your expertise with communities worldwide. From mentorship programs to on-the-ground project support, your skills can drive real change.",
-    cta: "Apply to Volunteer",
-    href: "#",
-    accentColor: "#4F6C8A",
-    bgPattern: "radial-gradient(circle at 100% 100%, rgba(79,108,138,0.1) 0%, transparent 50%)",
-  },
-  {
-    title: "Donate",
-    description:
-      "Your contribution directly funds scholarships, infrastructure projects, and community development initiatives. Every dollar creates measurable impact.",
+      "Your contribution directly funds scholarships, infrastructure projects, and community development initiatives across Africa. Every dollar creates measurable impact — from STEM education programs for young women to renewable energy microgrids in underserved communities. Whether you give once or become a monthly supporter, your generosity builds lasting change where it matters most.",
     cta: "Make a Donation",
     href: "#",
     accentColor: "#D5AA72",
     bgPattern: "radial-gradient(circle at 0% 100%, rgba(213,170,114,0.1) 0%, transparent 50%)",
-  },
-  {
-    title: "Partner With Us",
-    description:
-      "Join our network of academic, industry, and government collaborators. Together, we can amplify impact and scale solutions across borders.",
-    cta: "Explore Partnerships",
-    href: "#",
-    accentColor: "#98A48B",
-    bgPattern: "radial-gradient(circle at 100% 0%, rgba(152,164,139,0.1) 0%, transparent 50%)",
   },
 ];
 
@@ -53,59 +35,90 @@ export default function GetInvolved() {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <span className="text-sm font-semibold tracking-widest uppercase text-forge-gold">
+
+          <h2 className="mt-3 text-4xl sm:text-5xl font-bold text-[#4F6C8A]">
             Get Involved
-          </span>
-          <h2 className="mt-3 text-3xl sm:text-4xl font-bold text-forge-dark">
-            Three Ways to Make an Impact
           </h2>
           <p className="mt-4 text-lg text-forge-gray max-w-2xl mx-auto">
-            Whether you give time, funding, or expertise, there is a place for you 
-            in the Alliant Forge community.
+            Your generosity builds lasting change where it matters most.
           </p>
         </motion.div>
 
-        {/* Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {paths.map((path, idx) => (
-            <motion.div
-              key={path.title}
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-50px" }}
-              transition={{ duration: 0.6, delay: idx * 0.15 }}
-              className="group relative rounded-2xl border border-forge-tan/20 overflow-hidden hover:shadow-xl transition-shadow duration-500"
-              style={{ background: path.bgPattern }}
-            >
-              <div className="p-8 lg:p-10">
-                {/* Accent top bar */}
-                <div
-                  className="w-12 h-1 rounded-full mb-8"
-                  style={{ backgroundColor: path.accentColor }}
-                />
+        {/* Single Card - Full Width */}
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-50px" }}
+          transition={{ duration: 0.6 }}
+          className="group relative rounded-2xl border border-forge-tan/20 overflow-hidden hover:shadow-xl transition-shadow duration-500"
+          style={{ background: paths[0].bgPattern }}
+        >
+          <div className="p-8 lg:p-16">
+            <div className="max-w-4xl mx-auto text-center">
+              {/* Accent top bar */}
+              <div
+                className="w-12 h-1 rounded-full mb-8 mx-auto"
+                style={{ backgroundColor: paths[0].accentColor }}
+              />
 
-                <h3 className="text-2xl font-bold text-forge-dark mb-4">
-                  {path.title}
-                </h3>
+              <h3 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 mb-6">
+                {paths[0].title}
+              </h3>
 
-                <p className="text-forge-gray leading-relaxed mb-8">
-                  {path.description}
-                </p>
+              <p className="text-forge-gray leading-relaxed mb-8 text-base sm:text-lg max-w-3xl mx-auto">
+                {paths[0].description}
+              </p>
 
-                <a
-                  href={path.href}
-                  className="inline-flex items-center gap-2 px-6 py-3 rounded-full text-white font-semibold text-sm transition-all duration-300 hover:scale-105 hover:shadow-lg"
-                  style={{ backgroundColor: path.accentColor }}
-                >
-                  {path.cta}
-                  <span className="transition-transform duration-300 group-hover:translate-x-1">
-                    →
-                  </span>
-                </a>
-              </div>
-            </motion.div>
-          ))}
+              <a
+                href={paths[0].href}
+                className="inline-flex items-center gap-1 px-8 py-4 rounded-full text-white font-semibold text-base transition-all duration-300 hover:scale-105 hover:shadow-lg"
+                style={{ backgroundColor: paths[0].accentColor }}
+              >
+                {paths[0].cta}
+                <span className="transition-transform duration-300 group-hover:translate-x-2 ">
+                  →
+                </span>
+              </a>
+            </div>
+          </div>
+        </motion.div>
+
+        {/* Commented out Partner With Us - uncomment when ready */}
+        {/*
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-12">
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ duration: 0.6, delay: 0.15 }}
+            className="group relative rounded-2xl border border-forge-tan/20 overflow-hidden hover:shadow-xl transition-shadow duration-500"
+            style={{ background: "radial-gradient(circle at 100% 0%, rgba(152,164,139,0.1) 0%, transparent 50%)" }}
+          >
+            <div className="p-8 lg:p-10">
+              <div
+                className="w-12 h-1 rounded-full mb-8"
+                style={{ backgroundColor: "#98A48B" }}
+              />
+              <h3 className="text-2xl font-bold text-forge-dark mb-4">
+                Partner With Us
+              </h3>
+              <p className="text-forge-gray leading-relaxed mb-8">
+                Join our network of academic, industry, and government collaborators. Together, we can amplify impact and scale solutions across borders.
+              </p>
+              <a
+                href="#"
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-full text-white font-semibold text-sm transition-all duration-300 hover:scale-105 hover:shadow-lg"
+                style={{ backgroundColor: "#98A48B" }}
+              >
+                Explore Partnerships
+                <span className="transition-transform duration-300 group-hover:translate-x-1">
+                  →
+                </span>
+              </a>
+            </div>
+          </motion.div>
         </div>
+        */}
       </div>
     </section>
   );

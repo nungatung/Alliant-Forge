@@ -1,341 +1,220 @@
 'use client';
 
-import React, { useState, useEffect, useRef } from 'react';
-import { motion } from 'framer-motion';
+import React, { useState, useEffect, useCallback } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import Image from 'next/image';
 
-interface Pillar {
-  id: number;
-  title: string;
-  titleHighlight: { word: string; color: string };
-  description: string;
-  imageUrl: string;
-}
-
-const pillars: Pillar[] = [
+const heroImages = [
   {
     id: 1,
-    title: "Empowering Tomorrow's Innovators",
-    titleHighlight: { word: "Innovators", color: "#4F6C8A" },
-    description:
-      'Advancing women and youth in STEM through mentorship, training, and pathways to innovation leadership.',
-    imageUrl:
-      'https://images.unsplash.com/photo-1552664730-d307ca884978?w=1200&h=600&fit=crop',
+    src: '/hero/civil-students.webp',
+    alt: 'Team collaboration',
+    objectPosition: '25% 0%',
   },
   {
     id: 2,
-    title: 'Innovation & Sustainable Infrastructure',
-    titleHighlight: { word: "Infrastructure", color: "#D5AA72" },
-    description:
-      'Building renewable energy solutions and smart city infrastructure for a resilient future.',
-    imageUrl:
-      'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1200&h=600&fit=crop',
+    src: '/hero/sanitation.webp',
+    alt: 'Sustainable infrastructure',
+    objectPosition: '25% center',
   },
   {
     id: 3,
-    title: 'Social Impact & Community Development',
-    titleHighlight: { word: "Development", color: "#98A48B" },
-    description:
-      'Creating transformative local projects that drive meaningful change in underserved communities.',
-    imageUrl:
-      'https://images.unsplash.com/photo-1559027615-cd4628902d4a?w=1200&h=600&fit=crop',
-  },
-  {
-    id: 4,
-    title: 'Partnerships & Collaboration',
-    titleHighlight: { word: "Collaboration", color: "#4F6C8A" },
-    description:
-      'Uniting academia, industry, and government to amplify impact through strategic alliances.',
-    imageUrl:
-      'https://images.unsplash.com/photo-1552664730-d307ca884978?w=1200&h=600&fit=crop',
-  },
-  {
-    id: 5,
-    title: 'Skills Development & Education',
-    titleHighlight: { word: "Education", color: "#D5AA72" },
-    description:
-      'Delivering training programs and scholarships to unlock potential and create opportunity.',
-    imageUrl:
-      'https://images.unsplash.com/photo-1522202176988-696ce0213ce0?w=1200&h=600&fit=crop',
+    src: '/hero/community-impact.webp',
+    alt: 'Community development',
+    objectPosition: 'center center',
   },
 ];
 
 export default function HeroSection() {
   const [currentSlide, setCurrentSlide] = useState(0);
-  const imageGalleryRef = useRef<HTMLDivElement>(null);
-  const isMobileRef = useRef(false);
 
-  // Auto-advance on mobile
-  useEffect(() => {
-    const checkMobile = () => {
-      isMobileRef.current = window.innerWidth < 1024;
-    };
-
-    checkMobile();
-    window.addEventListener('resize', checkMobile);
-
-    // Auto-advance carousel on mobile every 5 seconds
-    let interval: NodeJS.Timeout;
-    if (isMobileRef.current) {
-      interval = setInterval(() => {
-        setCurrentSlide((prev) => (prev + 1) % pillars.length);
-      }, 5000);
-    }
-
-    return () => {
-      window.removeEventListener('resize', checkMobile);
-      if (interval) clearInterval(interval);
-    };
+  const nextSlide = useCallback(() => {
+    setCurrentSlide((prev) => (prev + 1) % heroImages.length);
   }, []);
 
-  // Handle scroll within image gallery only (desktop)
+  // Auto-advance every 5 seconds
   useEffect(() => {
-    const handleScroll = (e: WheelEvent) => {
-      if (isMobileRef.current) return; // Disable on mobile
-      if (!imageGalleryRef.current) return;
-
-      // Check if cursor is over the image gallery
-      const rect = imageGalleryRef.current.getBoundingClientRect();
-      const isOverImageGallery =
-        e.clientX >= rect.left &&
-        e.clientX <= rect.right &&
-        e.clientY >= rect.top &&
-        e.clientY <= rect.bottom;
-
-      if (!isOverImageGallery) return;
-
-      // Prevent default scroll
-      e.preventDefault();
-
-      // Move to next or previous slide based on scroll direction
-      if (e.deltaY > 0) {
-        // Scroll down
-        setCurrentSlide((prev) => Math.min(prev + 1, pillars.length - 1));
-      } else {
-        // Scroll up
-        setCurrentSlide((prev) => Math.max(prev - 1, 0));
-      }
-    };
-
-    window.addEventListener('wheel', handleScroll, { passive: false });
-
-    return () => {
-      window.removeEventListener('wheel', handleScroll);
-    };
-  }, []);
-
-  const renderTitleWithHighlight = (pillar: Pillar) => {
-    const { title, titleHighlight } = pillar;
-    const parts = title.split(titleHighlight.word);
-
-    return (
-      <>
-        {parts[0]}
-        <span style={{ color: titleHighlight.color }}>{titleHighlight.word}</span>
-        {parts[1]}
-      </>
-    );
-  };
+    const interval = setInterval(nextSlide, 7000);
+    return () => clearInterval(interval);
+  }, [nextSlide]);
 
   return (
     <section
-      className="relative w-full min-h-[130vh] pt-20 overflow-hidden"
       style={{
-        background: 'linear-gradient(135deg, #FCFCFE 0%, #FCFCFE 35%, rgba(79, 108, 138, 0.15) 100%)',
+        position: 'relative',
+        width: '100%',
+        minHeight: '100vh',
+        display: 'flex',
+        alignItems: 'stretch',
+        overflow: 'hidden',
+        backgroundColor: '#FCFCFE',
+        paddingTop: '165px',
       }}
     >
-      <div className="relative h-full flex flex-col lg:flex-row items-center max-w-7xl mx-auto px-4 sm:px-6 py-20 lg:py-20 gap-8 lg:gap-12">
-        {/* Left Side: Text Content */}
+      {/* Left: Descriptor Text */}
+      <div
+        style={{
+          flex: '0 0 50%',
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'flex-end',
+          padding: '2rem 5rem 2rem',
+          position: 'relative',
+          zIndex: 10,
+          background: 'linear-gradient(135deg, rgba(213, 170, 114, 0.09) 0%, rgba(213, 170, 114, 0.03) 40%, #FCFCFE 70%)',
+        }}
+      >
         <motion.div
-          key={`content-${pillars[currentSlide].id}`}
-          initial={{ opacity: 0, x: -30 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.6 }}
-          className="w-full lg:w-1/2 flex flex-col justify-center mt-8 lg:mt-0"
+          initial={{ opacity: 0, y: 40 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, ease: 'easeOut' }}
         >
-          <motion.h2
-            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-forge-dark mb-6 leading-tight"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.1 }}
+          <h1
+            style={{
+              fontSize: 'clamp(2.5rem, 6vw, 4rem)',
+              fontWeight: 700,
+              lineHeight: 1.15,
+              color: '#110f0fd8',
+              margin: 0,
+              letterSpacing: '-0.02em',
+            }}
           >
-            {renderTitleWithHighlight(pillars[currentSlide])}
-          </motion.h2>
-
-          <motion.p
-            className="text-base sm:text-lg md:text-xl text-forge-gray mb-8 max-w-md leading-relaxed"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-          >
-            {pillars[currentSlide].description}
-          </motion.p>
-
-          <motion.div
-            className="flex flex-col sm:flex-row gap-4"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.3 }}
-          >
-            <motion.button
-              className="px-8 py-3 border-2 border-forge-dark text-forge-dark rounded-lg font-semibold text-sm sm:text-base cursor-pointer"
-              whileHover={{
-                backgroundColor: '#4F6C8A',
-                color: '#FCFCFE',
-                borderColor: '#4F6C8A',
-              }}
-              transition={{ duration: 0.3 }}
-            >
-              Learn More
-            </motion.button>
-          </motion.div>
-
-          {/* Scroll Indicator - Desktop only */}
-          <motion.div
-            className="mt-12 flex items-center gap-2 hidden lg:flex"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.6 }}
-          >
-            <div className="w-8 h-12 border-2 border-forge-dark rounded-full flex items-center justify-center flex-shrink-0">
-              <motion.div
-                className="w-1 h-2 bg-forge-dark rounded-full"
-                animate={{ y: [0, 8, 0] }}
-                transition={{ duration: 1.5, repeat: Infinity }}
-              />
-            </div>
-            <span className="text-sm text-forge-gray">Scroll over images</span>
-          </motion.div>
+            <span style={{ color: '#094AA0', fontStyle: 'italic' }}>
+              "Empowering women
+            </span>{' '}
+            and youth to lead the future of STEM through{' '}
+            <span style={{ color: '#CC7303', fontStyle: 'italic' }}>
+              sustainable engineering
+            </span>
+            ,{' '}
+            <span style={{ color: '#537D1E', fontStyle: 'italic' }}>
+              climate-adaptive design
+            </span>
+            , and{' '}
+            <span style={{ color: '#094AA0', fontStyle: 'italic' }}>
+              excellent project management
+            </span>{' '}
+            to build a more resilient, equitable world."
+          </h1>
         </motion.div>
+      </div>
 
-        {/* Right Side: Image Gallery */}
+      {/* ─── Right: Image Carousel ─── */}
+      <div
+        style={{
+          flex: '0 0 50%',
+          position: 'relative',
+          overflow: 'hidden',
+        }}
+      >
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={heroImages[currentSlide].id}
+            initial={{ opacity: 0, scale: 1.08 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.97 }}
+            transition={{ duration: 0.9, ease: 'easeInOut' }}
+            style={{
+              position: 'absolute',
+              inset: 0,
+            }}
+          >
+            <Image
+              src={heroImages[currentSlide].src}
+              alt={heroImages[currentSlide].alt}
+              fill
+              className="object-cover"
+              style={{ objectPosition: heroImages[currentSlide].objectPosition }}
+              priority={currentSlide === 0}
+              sizes="100vw"
+            />
+            {/* Soft left-edge gradient — much lighter, only for text readability */}
+            <div
+              style={{
+                position: 'absolute',
+                inset: 0,
+                background:
+                  'linear-gradient(to right, rgba(10,10,10,0.15) 0%, transparent 40%)',
+                pointerEvents: 'none',
+              }}
+            />
+            {/* Very subtle bottom gradient for indicators readability */}
+            <div
+              style={{
+                position: 'absolute',
+                inset: 0,
+                background:
+                  'linear-gradient(to top, rgba(10,10,10,0.2) 0%, transparent 30%)',
+                pointerEvents: 'none',
+              }}
+            />
+          </motion.div>
+        </AnimatePresence>
+
+        {/* Slide progress indicators */}
         <div
-          ref={imageGalleryRef}
-          className="w-full lg:w-1/2 relative h-[500px] sm:h-[600px] lg:h-screen lg:sticky lg:top-20 cursor-grab active:cursor-grabbing px-4 sm:px-0"
+          style={{
+            position: 'absolute',
+            bottom: '2rem',
+            right: '2rem',
+            display: 'flex',
+            gap: '0.75rem',
+            zIndex: 20,
+            alignItems: 'center',
+          }}
         >
-          {/* Container for scroll-based animation with padding to prevent cutoff */}
-          <div className="relative w-full h-full flex items-center justify-center lg:block">
-            {/* Large Center Image - Index 0 */}
-            <motion.div
-              className="absolute w-64 sm:w-80 h-80 sm:h-[420px] rounded-2xl overflow-hidden shadow-2xl hidden lg:block"
-              style={{ bottom: '5%', right: '10%' }}
-              animate={{
-                scale: currentSlide === 0 ? 1.25 : 0.85,
-                opacity: currentSlide === 0 ? 1 : 0.4,
-                zIndex: currentSlide === 0 ? 50 : 10,
+          {heroImages.map((_, idx) => (
+            <button
+              key={idx}
+              onClick={() => setCurrentSlide(idx)}
+              aria-label={`Go to slide ${idx + 1}`}
+              style={{
+                width: idx === currentSlide ? '2.5rem' : '0.5rem',
+                height: '0.25rem',
+                borderRadius: '9999px',
+                border: 'none',
+                background:
+                  idx === currentSlide
+                    ? '#ffffff'
+                    : 'rgba(255,255,255,0.3)',
+                cursor: 'pointer',
+                transition: 'all 0.4s ease',
+                padding: 0,
               }}
-              transition={{ duration: 0.5, ease: 'easeInOut' }}
-            >
-              <img
-                src={pillars[0].imageUrl}
-                alt={pillars[0].title}
-                className="w-full h-full object-cover"
-              />
-              {currentSlide !== 0 && (
-                <div className="absolute inset-0 bg-black/40 backdrop-blur-sm" />
-              )}
-            </motion.div>
-
-            {/* Top Left Image - Index 1 */}
-            <motion.div
-              className="absolute w-56 sm:w-64 h-72 sm:h-80 rounded-2xl overflow-hidden shadow-lg hidden lg:block"
-              style={{ top: '10%', left: '5%' }}
-              animate={{
-                scale: currentSlide === 1 ? 1.25 : 0.85,
-                opacity: currentSlide === 1 ? 1 : 0.4,
-                zIndex: currentSlide === 1 ? 50 : 10,
-              }}
-              transition={{ duration: 0.5, ease: 'easeInOut' }}
-            >
-              <img
-                src={pillars[1].imageUrl}
-                alt={pillars[1].title}
-                className="w-full h-full object-cover"
-              />
-              {currentSlide !== 1 && (
-                <div className="absolute inset-0 bg-black/40 backdrop-blur-sm" />
-              )}
-            </motion.div>
-
-            {/* Middle Right Image - Index 2 */}
-            <motion.div
-              className="absolute w-64 sm:w-72 h-80 sm:h-96 rounded-2xl overflow-hidden shadow-lg hidden lg:block"
-              style={{ top: '35%', right: '15%' }}
-              animate={{
-                scale: currentSlide === 2 ? 1.25 : 0.85,
-                opacity: currentSlide === 2 ? 1 : 0.4,
-                zIndex: currentSlide === 2 ? 50 : 10,
-              }}
-              transition={{ duration: 0.5, ease: 'easeInOut' }}
-            >
-              <img
-                src={pillars[2].imageUrl}
-                alt={pillars[2].title}
-                className="w-full h-full object-cover"
-              />
-              {currentSlide !== 2 && (
-                <div className="absolute inset-0 bg-black/40 backdrop-blur-sm" />
-              )}
-            </motion.div>
-
-            {/* Top Right Image - Index 3 */}
-            <motion.div
-              className="absolute w-52 sm:w-60 h-64 sm:h-72 rounded-2xl overflow-hidden shadow-lg hidden lg:block"
-              style={{ top: '15%', right: '8%' }}
-              animate={{
-                scale: currentSlide === 3 ? 1.25 : 0.85,
-                opacity: currentSlide === 3 ? 1 : 0.4,
-                zIndex: currentSlide === 3 ? 50 : 10,
-              }}
-              transition={{ duration: 0.5, ease: 'easeInOut' }}
-            >
-              <img
-                src={pillars[3].imageUrl}
-                alt={pillars[3].title}
-                className="w-full h-full object-cover"
-              />
-              {currentSlide !== 3 && (
-                <div className="absolute inset-0 bg-black/40 backdrop-blur-sm" />
-              )}
-            </motion.div>
-
-            {/* Bottom Right Image - Index 4 */}
-            <motion.div
-              className="absolute w-56 sm:w-64 h-72 sm:h-80 rounded-2xl overflow-hidden shadow-lg hidden lg:block"
-              style={{ bottom: '8%', right: '25%' }}
-              animate={{
-                scale: currentSlide === 4 ? 1.25 : 0.85,
-                opacity: currentSlide === 4 ? 1 : 0.4,
-                zIndex: currentSlide === 4 ? 50 : 10,
-              }}
-              transition={{ duration: 0.5, ease: 'easeInOut' }}
-            >
-              <img
-                src={pillars[4].imageUrl}
-                alt={pillars[4].title}
-                className="w-full h-full object-cover"
-              />
-              {currentSlide !== 4 && (
-                <div className="absolute inset-0 bg-black/40 backdrop-blur-sm" />
-              )}
-            </motion.div>
-
-            {/* Mobile: Full-width Image */}
-            <motion.div
-              className="w-full h-full rounded-2xl overflow-hidden shadow-2xl lg:hidden"
-              key={`mobile-${currentSlide}`}
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.5 }}
-            >
-              <img
-                src={pillars[currentSlide].imageUrl}
-                alt={pillars[currentSlide].title}
-                className="w-full h-full object-cover"
-              />
-            </motion.div>
-          </div>
+            />
+          ))}
         </div>
       </div>
+
+      {/* ─── Mobile & Tablet override: stacked layout ─── */}
+      <style jsx>{`
+        @media (max-width: 1024px) {
+          section {
+            flex-direction: column !important;
+            padding-top: 64px !important; // Smaller navbar offset for tablet
+          }
+          section > div:first-child {
+            flex: 0 0 auto !important;
+            padding: 2rem 2rem 2.5rem !important;
+            min-height: auto;
+          }
+          section > div:nth-child(2) {
+            flex: 1 1 auto !important;
+            min-height: 50vh;
+          }
+        }
+        @media (max-width: 768px) {
+          section {
+            padding-top: 56px !important; // Even smaller for mobile
+          }
+          section > div:first-child {
+            padding: 2rem 1.5rem 2.5rem !important;
+          }
+          section > div:nth-child(2) {
+            min-height: 45vh;
+          }
+        }
+      `}</style>
     </section>
   );
 }

@@ -1,4 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap');
 @import "tailwindcss";
+
 
 
 /* Light (Slim) */
@@ -78,6 +80,8 @@
   font-display: swap;
 }
 
+
+
 @layer base {
   html {
     scroll-behavior: smooth;
@@ -86,53 +90,19 @@
   }
 
   body {
-    font-family: 'Polysans', system-ui, -apple-system, sans-serif;
+    font-family: 'Polysans', system-ui, -apple-system, sans-serif, 'DM Sans';
     background-color: #FCFCFE;
     color: #1a1a1a;
     overflow-x: hidden;
   }
 
-  /* Conic Gradient Donate Button */
-  @keyframes conic-shine {
-    0% {
-      background-position: 0% 50%;
-    }
-    50% {
-      background-position: 100% 50%;
-    }
-    100% {
-      background-position: 0% 50%;
-    }
-  }
 
-  .donate-btn-wrapper {
-    background: conic-gradient(
-      from 0deg,
-      #00f5ff,
-      #000,
-      #000,
-      #00f5ff,
-      #000,
-      #000,
-      #000,
-      #00f5ff
-    );
-    background-size: 300% 300%;
-    animation: conic-shine 6s ease-out infinite;
-    border-radius: 9999px;
-    padding: 2px;
-  }
-
-  .donate-btn-wrapper button {
-    @apply px-8 py-2 text-sm font-semibold text-white rounded-full bg-gray-900 hover:bg-gray-800 transition-colors duration-300;
-  }
-  
   ::-webkit-scrollbar {
-    width: 8px;
+    width: 10px;
   }
 
   ::-webkit-scrollbar-track {
-    background: #f1f5f9;
+    background: #4F6C8A;
   }
 
   ::-webkit-scrollbar-thumb {

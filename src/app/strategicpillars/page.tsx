@@ -326,12 +326,10 @@ export default function PillarsPage() {
                 </div>
             </section>
 
-            {/* ═══════════════════════════════════════
-          PILLAR 1: Innovation & Infrastructure
-          ═══════════════════════════════════════ */}
+            {/*  Innovation & Infrastructure*/}
             <section id="innovation-and-accelerating-infrastructure-stewardship" className="relative border-t border-gray-100 bg-[#FAFAFA] scroll-mt-24 mt-20">
 
-                {/* ─── Section Header ─── */}
+                {/*  Section Header */}
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 lg:pt-28 pb-12">
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
@@ -346,7 +344,7 @@ export default function PillarsPage() {
                     </motion.div>
                 </div>
 
-                {/* ─── Content with text wrapping around cards ─── */}
+                {/* Content with text wrapping around cards */}
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-20 lg:pb-28">
                     <div className="relative">
 
@@ -357,7 +355,7 @@ export default function PillarsPage() {
                                     icon={<GreenTechIcon />}
                                     tagline="Green technologies for a thriving planet."
                                     description="Developing renewable energy solutions and eco-friendly innovations that protect our environment."
-                                    accentColor="#98A48B"
+                                    accentColor="#9cb681ff"
                                     delay={0}
                                 />
                                 <ManifestoCard
@@ -378,7 +376,7 @@ export default function PillarsPage() {
                                     icon={<PartnershipIcon />}
                                     tagline="Global partnerships for shared prosperity."
                                     description="Collaborating across borders to drive inclusive and equitable progress."
-                                    accentColor="#98A48B"
+                                    accentColor="#9cb681ff"
                                     delay={0.3}
                                 />
                             </div>
@@ -423,12 +421,10 @@ export default function PillarsPage() {
                 </div>
             </section>
 
-            {/* ═══════════════════════════════════════
-          PILLAR 3: Collaboration & Community Impact
-          ═══════════════════════════════════════ */}
+            {/*  Collaboration & Community Impact */}
             <section id="collaboration-and-community-impact" className="relative border-t border-gray-100 bg-[#FCFCFE] scroll-mt-24 mt-20">
 
-                {/* ─── Section Header ─── */}
+                {/*  Section Header */}
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 lg:pt-28 pb-12">
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
@@ -443,7 +439,7 @@ export default function PillarsPage() {
                     </motion.div>
                 </div>
 
-                {/* ─── 4 Collaboration Cards in a Row ─── */}
+                {/* 4 Collaboration Cards in a Row */}
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-12">
                     <div className="flex flex-col sm:flex-row gap-3 lg:gap-4">
                         <CollaborationCard
@@ -464,7 +460,7 @@ export default function PillarsPage() {
                             icon={<BridgingIcon />}
                             title="Bridging Sectors, Creating Solutions."
                             description="Connecting NGOs, businesses, and government to design practical solutions that drive measurable impact."
-                            accentColor="#6B8F6B"
+                            accentColor="#9cb681ff"
                             delay={0.2}
                         />
                         <CollaborationCard
@@ -477,7 +473,7 @@ export default function PillarsPage() {
                     </div>
                 </div>
 
-                {/* ─── Write-up Content ─── */}
+                {/* Write-up Content */}
                 <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pb-20 lg:pb-28">
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}

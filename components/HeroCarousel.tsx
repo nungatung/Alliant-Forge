@@ -43,12 +43,12 @@ export default function HeroSection() {
       style={{
         position: 'relative',
         width: '100%',
-        minHeight: '100vh',
+        minHeight: '95vh',
         display: 'flex',
         alignItems: 'stretch',
         overflow: 'hidden',
         backgroundColor: '#FCFCFE',
-        paddingTop: '165px',
+        paddingTop: '176px',
       }}
     >
       {/* Left: Descriptor Text */}
@@ -72,6 +72,7 @@ export default function HeroSection() {
           <h1
             style={{
               fontSize: 'clamp(2.5rem, 6vw, 4rem)',
+              fontFamily: '"DM Sans", sans-serif',
               fontWeight: 700,
               lineHeight: 1.15,
               color: '#110f0fd8',
@@ -79,19 +80,19 @@ export default function HeroSection() {
               letterSpacing: '-0.02em',
             }}
           >
-            <span style={{ color: '#094AA0', fontStyle: 'italic' }}>
+            <span style={{ color: '#4F6C8A', fontStyle: 'italic' }}>
               "Empowering women
             </span>{' '}
             and youth to lead the future of STEM through{' '}
-            <span style={{ color: '#CC7303', fontStyle: 'italic' }}>
+            <span style={{ color: '#D5AA72', fontStyle: 'italic' }}>
               sustainable engineering
             </span>
             ,{' '}
-            <span style={{ color: '#537D1E', fontStyle: 'italic' }}>
+            <span style={{ color: '#9cb681ff', fontStyle: 'italic' }}>
               climate-adaptive design
             </span>
             , and{' '}
-            <span style={{ color: '#094AA0', fontStyle: 'italic' }}>
+            <span style={{ color: '#4F6C8A', fontStyle: 'italic' }}>
               excellent project management
             </span>{' '}
             to build a more resilient, equitable world."
@@ -126,7 +127,6 @@ export default function HeroSection() {
               className="object-cover"
               style={{ objectPosition: heroImages[currentSlide].objectPosition }}
               priority={currentSlide === 0}
-              sizes="100vw"
             />
             {/* Soft left-edge gradient — much lighter, only for text readability */}
             <div

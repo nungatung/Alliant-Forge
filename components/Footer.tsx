@@ -2,21 +2,19 @@
 
 import Image from 'next/image';
 
-// Hover colors assigned to each link
+
 const linkColors: Record<string, string> = {
   Home: '#4F6C8A',
   'Who We Are': '#D5AA72',
   'Our Work': '#98A48B',
-  'SDG Alignment': '#4F6C8A',
-  'Partner With Us': '#D5AA72',
-  'Make An Impact': '#98A48B',
-  'Get In Touch': '#4F6C8A',
+  'Strategic Pillars': '#4F6C8A',
+  'Make An Impact': '#9cb681ff',
 };
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
 
-  const orgLinks = ['Home', 'Who We Are', 'Our Work', 'SDG Alignment', 'Make An Impact'];
+  const orgLinks = ['Home', 'Our Work', 'Who We Are', 'Strategic Pillars', 'Make An Impact'];
   const contactLinks = [
     { label: '+1 (555) 123-4567', href: 'tel:+15551234567' },
     { label: 'info@alliantforge.org', href: 'mailto:[EMAIL_ADDRESS]' },

@@ -8,8 +8,9 @@ import { motion, AnimatePresence } from 'framer-motion';
 const linkColors: Record<string, string> = {
   'Home': '#4F6C8A',
   'Who We Are': '#D5AA72',
-  'Our Strategic Pillars': '#98A48B',
+  'Strategic Pillars': '#9cb681ff',
   'All Pages': '#D5AA72',
+  'Our Work': '#9cb681ff',
   'Make An Impact': '#4F6C8A',
   'Get In Touch': '#D5AA72',
 };
@@ -54,6 +55,7 @@ export default function Navbar() {
   ];
 
   const moreLinks = [
+    { label: 'Our Work', href: '/'},
     { label: 'Make An Impact', href: '#impact' },
     { label: 'Get In Touch', href: '#contact' },
   ];

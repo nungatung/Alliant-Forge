@@ -18,6 +18,7 @@ const config: Config = {
       },
       fontFamily: {
         polysans: ['Polysans', 'system-ui', 'sans-serif'],
+        'dm': ['DM Sans', 'sans-serif']
       },
       keyframes: {
         'fade-up': {

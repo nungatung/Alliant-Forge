@@ -37,7 +37,7 @@ const pillars: Pillar[] = [
   },
   {
     title: 'Collaboration & Community Impact',
-    accentColor: '#98A48B',
+    accentColor: '#9cb681ff',
     bulletPoints: [
       'Local Empowerment Initiatives',
       'Cross-Sector Partnerships',
@@ -183,7 +183,7 @@ export default function StrategicPillars() {
           {/* Intro Paragraph */}
           <div className="space-y-6 text-gray-600 text-base sm:text-lg leading-relaxed mb-16">
             <p>
-              At Alliant Forge, we turn ambition into measurable impact. Our strategic framework drives sustainable transformation by merging technical expertise with social empowerment. We pioneer <span className="font-semibold text-[#4F6C8A]">sustainable engineering</span> and <span className="font-semibold text-[#98A48B]">climate-adaptive design</span> to put women and youth at the center of STEM-driven development.
+              At Alliant Forge, we turn ambition into measurable impact. Our strategic framework drives sustainable transformation by merging technical expertise with social empowerment. We pioneer <span className="font-semibold text-[#4F6C8A]">sustainable engineering</span> and <span className="font-semibold text-[#9cb681ff]">climate-adaptive design</span> to put women and youth at the center of STEM-driven development.
             </p>
             <p>
               We deliver these initiatives through excellence in <span className="font-semibold text-[#D5AA72]">project and program management</span>, ensuring every alliance we forge contributes directly to a more inclusive, resilient, and sustainable world.
@@ -218,8 +218,8 @@ export default function StrategicPillars() {
             </div>
 
             {/* Collaboration */}
-            <div className="border-l-4 border-[#98A48B] pl-6">
-              <h5 className="text-lg sm:text-xl font-bold text-[#98A48B] mb-3">
+            <div className="border-l-4 border-[#9cb681ff] pl-6">
+              <h5 className="text-lg sm:text-xl font-bold text-[#9cb681ff] mb-3">
                 Collaboration & Community Impact
               </h5>
               <p className="text-gray-600 text-base leading-relaxed">
@@ -245,7 +245,7 @@ export default function StrategicPillars() {
                   <span><span className="font-semibold text-gray-800">African Union's Agenda 2063</span> - Supporting a unified, prosperous continent.</span>
                 </li>
                 <li className="flex items-start gap-3">
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#98A48B] mt-2 shrink-0" />
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#9cb681ff] mt-2 shrink-0" />
                   <span><span className="font-semibold text-gray-800">European Union's Green Deal</span> - Connecting local actions to global climate goals.</span>
                 </li>
               </ul>

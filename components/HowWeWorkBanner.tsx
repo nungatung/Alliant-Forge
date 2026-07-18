@@ -42,6 +42,7 @@ const workItems: WorkItem[] = [
 
 export default function MissionAndWorkSection() {
   return (
+    <section id='about'>
     <section className="relative w-full min-h-screen overflow-hidden">
       {/* Background Parallax Image */}
       <div
@@ -86,7 +87,7 @@ export default function MissionAndWorkSection() {
                 and intentional innovation.
               </p>
 
-              <motion.button
+              {/* <motion.button
                 className="px-6 sm:px-8 py-2.5 sm:py-3 border-2 border-white text-white rounded-lg font-semibold text-sm sm:text-base cursor-pointer"
                 whileHover={{
                   backgroundColor: '#4F6C8A',
@@ -96,8 +97,8 @@ export default function MissionAndWorkSection() {
                 transition={{ duration: 0.3 }}
               >
                 Learn More
-              </motion.button>
-            </motion.div>
+              </motion.button> */}
+            </motion.div> 
 
             {/* Right Side: Work Items */}
             <div className="grid grid-cols-1 gap-4 sm:gap-6">
@@ -130,6 +131,7 @@ export default function MissionAndWorkSection() {
           </div>
         </div>
       </div>
+    </section>
     </section>
   );
 }

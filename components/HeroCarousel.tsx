@@ -4,217 +4,187 @@ import React, { useState, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Image from 'next/image';
 
-const heroImages = [
+const heroSlides = [
   {
     id: 1,
-    src: '/hero/civil-students.webp',
-    alt: 'Team collaboration',
-    objectPosition: '25% 0%',
+    src: '/hero/onsite-experience.webp',
+    alt: 'Sustainable infrastructure',
+    objectPosition: '50% 8%',
+    headline: 'Building resilient communities',
+    subline: 'with',
+    highlight: 'climate-adaptive design',
+    highlightColor: '#5086c0ff',
   },
   {
     id: 2,
-    src: '/hero/sanitation.webp',
-    alt: 'Sustainable infrastructure',
-    objectPosition: '25% center',
+    src: '/hero/students.webp',
+    alt: 'Team collaboration',
+    objectPosition: '65% 22%',
+    headline: 'Empowering women & youth',
+    subline: 'to lead the future of STEM through',
+    highlight: 'sustainable engineering',
+    highlightColor: '#9cb681ff',
   },
   {
     id: 3,
-    src: '/hero/community-impact.webp',
+    src: '/hero/community-action.webp',
     alt: 'Community development',
-    objectPosition: 'center center',
+    objectPosition: '70% center',
+    headline: 'Driving global impact',
+    subline: 'through',
+    highlight: 'excellent project management',
+    highlightColor: '#D5AA72',
   },
 ];
 
 export default function HeroSection() {
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [navHeight, setNavHeight] = useState(0);
 
   const nextSlide = useCallback(() => {
-    setCurrentSlide((prev) => (prev + 1) % heroImages.length);
+    setCurrentSlide((prev) => (prev + 1) % heroSlides.length);
   }, []);
 
-  // Auto-advance every 5 seconds
+ 
   useEffect(() => {
-    const interval = setInterval(nextSlide, 7000);
+    const interval = setInterval(nextSlide, 8000);
     return () => clearInterval(interval);
   }, [nextSlide]);
 
+ 
+  useEffect(() => {
+    const measure = () => {
+      const nav = document.querySelector('nav');
+      if (nav) setNavHeight(nav.offsetHeight);
+    };
+    measure();
+    window.addEventListener('resize', measure);
+    return () => window.removeEventListener('resize', measure);
+  }, []);
+
+  const slide = heroSlides[currentSlide];
+
   return (
     <section
-      style={{
-        position: 'relative',
-        width: '100%',
-        minHeight: '95vh',
-        display: 'flex',
-        alignItems: 'stretch',
-        overflow: 'hidden',
-        backgroundColor: '#FCFCFE',
-        paddingTop: '176px',
-      }}
+      className="relative w-full overflow-hidden"
+      style={{ paddingTop: navHeight }}
     >
-      {/* Left: Descriptor Text */}
-      <div
-        style={{
-          flex: '0 0 50%',
-          display: 'flex',
-          flexDirection: 'column',
-          justifyContent: 'flex-end',
-          padding: '2rem 5rem 2rem',
-          position: 'relative',
-          zIndex: 10,
-          background: 'linear-gradient(135deg, rgba(213, 170, 114, 0.09) 0%, rgba(213, 170, 114, 0.03) 40%, #FCFCFE 70%)',
-        }}
-      >
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: 'easeOut' }}
-        >
-          <h1
-            style={{
-              fontSize: 'clamp(2.5rem, 6vw, 4rem)',
-              fontFamily: '"DM Sans", sans-serif',
-              fontWeight: 700,
-              lineHeight: 1.15,
-              color: '#110f0fd8',
-              margin: 0,
-              letterSpacing: '-0.02em',
-            }}
-          >
-            <span style={{ color: '#4F6C8A', fontStyle: 'italic' }}>
-              "Empowering women
-            </span>{' '}
-            and youth to lead the future of STEM through{' '}
-            <span style={{ color: '#D5AA72', fontStyle: 'italic' }}>
-              sustainable engineering
-            </span>
-            ,{' '}
-            <span style={{ color: '#9cb681ff', fontStyle: 'italic' }}>
-              climate-adaptive design
-            </span>
-            , and{' '}
-            <span style={{ color: '#4F6C8A', fontStyle: 'italic' }}>
-              excellent project management
-            </span>{' '}
-            to build a more resilient, equitable world."
-          </h1>
-        </motion.div>
-      </div>
-
-      {/* ─── Right: Image Carousel ─── */}
-      <div
-        style={{
-          flex: '0 0 50%',
-          position: 'relative',
-          overflow: 'hidden',
-        }}
-      >
+      <div className="relative w-full h-[55dvh] sm:h-[60dvh] md:h-[65dvh] lg:h-[80dvh]">
         <AnimatePresence mode="wait">
           <motion.div
-            key={heroImages[currentSlide].id}
-            initial={{ opacity: 0, scale: 1.08 }}
+            key={slide.id}
+            initial={{ opacity: 0, scale: 1.05 }}
             animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 0.97 }}
-            transition={{ duration: 0.9, ease: 'easeInOut' }}
-            style={{
-              position: 'absolute',
-              inset: 0,
-            }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 1, ease: 'easeInOut' }}
+            className="absolute inset-0"
           >
             <Image
-              src={heroImages[currentSlide].src}
-              alt={heroImages[currentSlide].alt}
+              src={slide.src}
+              alt={slide.alt}
               fill
               className="object-cover"
-              style={{ objectPosition: heroImages[currentSlide].objectPosition }}
+              style={{ objectPosition: slide.objectPosition }}
               priority={currentSlide === 0}
-            />
-            {/* Soft left-edge gradient — much lighter, only for text readability */}
-            <div
-              style={{
-                position: 'absolute',
-                inset: 0,
-                background:
-                  'linear-gradient(to right, rgba(10,10,10,0.15) 0%, transparent 40%)',
-                pointerEvents: 'none',
-              }}
-            />
-            {/* Very subtle bottom gradient for indicators readability */}
-            <div
-              style={{
-                position: 'absolute',
-                inset: 0,
-                background:
-                  'linear-gradient(to top, rgba(10,10,10,0.2) 0%, transparent 30%)',
-                pointerEvents: 'none',
-              }}
+              sizes="100vw"
             />
           </motion.div>
         </AnimatePresence>
 
-        {/* Slide progress indicators */}
-        <div
-          style={{
-            position: 'absolute',
-            bottom: '2rem',
-            right: '2rem',
-            display: 'flex',
-            gap: '0.75rem',
-            zIndex: 20,
-            alignItems: 'center',
-          }}
-        >
-          {heroImages.map((_, idx) => (
-            <button
-              key={idx}
-              onClick={() => setCurrentSlide(idx)}
-              aria-label={`Go to slide ${idx + 1}`}
-              style={{
-                width: idx === currentSlide ? '2.5rem' : '0.5rem',
-                height: '0.25rem',
-                borderRadius: '9999px',
-                border: 'none',
-                background:
-                  idx === currentSlide
-                    ? '#ffffff'
-                    : 'rgba(255,255,255,0.3)',
-                cursor: 'pointer',
-                transition: 'all 0.4s ease',
-                padding: 0,
-              }}
-            />
-          ))}
+        {/* Dark overlay — stronger on the left where text sits, lighter on the right */}
+        <div className="absolute inset-0 bg-gradient-to-r from-black/75 via-black/45 to-black/10 sm:from-black/65 sm:via-black/35 sm:to-transparent" />
+
+        {/* Bottom gradient for indicators */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
+
+        {/* Text Content */}
+        <div className="absolute inset-0 flex items-center">
+          <div className="w-full max-w-[1440px] mx-auto px-6 sm:px-8 lg:px-12 xl:px-16">
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={slide.id + '-text'}
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -20 }}
+                transition={{ duration: 0.7, ease: 'easeOut', delay: 0.2 }}
+                className="max-w-2xl"
+              >
+                <h1
+                  className="text-white font-bold leading-tight"
+                  style={{
+                    fontFamily: '"DM Sans", sans-serif',
+                    fontSize: 'clamp(1.75rem, 4.5vw, 3.5rem)',
+                    letterSpacing: '-0.02em',
+                    textShadow: '0 2px 20px rgba(0,0,0,0.3)',
+                  }}
+                >
+                  {slide.headline}
+                </h1>
+
+                <p
+                  className="mt-3 sm:mt-4 text-white/90 font-medium"
+                  style={{
+                    fontFamily: '"DM Sans", sans-serif',
+                    fontWeight: 'bold',
+                    fontSize: 'clamp(1rem, 2.2vw, 1.5rem)',
+                    lineHeight: 1.2,
+                    textShadow: '0 1px 10px rgba(0,0,0,0.3)',
+                  }}
+                >
+                  {slide.subline}{' '}
+                  <span
+                    style={{
+                      color: slide.highlightColor,
+                      fontStyle: 'italic',
+                      fontWeight: 'bold',
+                      textShadow: '0 1px 10px rgba(0,0,0,0.4)',
+                    }}
+                  >
+                    {slide.highlight}
+                  </span>
+                </p>
+              </motion.div>
+            </AnimatePresence>
+          </div>
+        </div>
+
+        {/* Slide Progress Indicators */}
+        <div className="absolute bottom-6 left-6 sm:bottom-8 sm:left-8 lg:left-12 xl:left-16 flex items-center gap-3 z-20">
+          <span
+            className="text-white/80 font-mono text-sm tracking-wider"
+            style={{ fontFamily: '"DM Sans", sans-serif' }}
+          >
+          </span>
+
+          <div className="flex items-center gap-2">
+            {heroSlides.map((_, idx) => (
+              <button
+                key={idx}
+                onClick={() => setCurrentSlide(idx)}
+                aria-label={`Go to slide ${idx + 1}`}
+                className="relative h-0.5 rounded-full overflow-hidden transition-all duration-500"
+                style={{
+                  width: idx === currentSlide ? '2.5rem' : '1.25rem',
+                  background:
+                    idx === currentSlide
+                      ? 'rgba(255,255,255,0.9)'
+                      : 'rgba(255,255,255,0.3)',
+                }}
+              >
+                {idx === currentSlide && (
+                  <motion.div
+                    className="absolute inset-0 bg-white origin-left"
+                    initial={{ scaleX: 0 }}
+                    animate={{ scaleX: 1 }}
+                    transition={{ duration: 7, ease: 'linear' }}
+                    key={currentSlide}
+                  />
+                )}
+              </button>
+            ))}
+          </div>
         </div>
       </div>
-
-      {/* ─── Mobile & Tablet override: stacked layout ─── */}
-      <style jsx>{`
-        @media (max-width: 1024px) {
-          section {
-            flex-direction: column !important;
-            padding-top: 64px !important; // Smaller navbar offset for tablet
-          }
-          section > div:first-child {
-            flex: 0 0 auto !important;
-            padding: 2rem 2rem 2.5rem !important;
-            min-height: auto;
-          }
-          section > div:nth-child(2) {
-            flex: 1 1 auto !important;
-            min-height: 50vh;
-          }
-        }
-        @media (max-width: 768px) {
-          section {
-            padding-top: 56px !important; // Even smaller for mobile
-          }
-          section > div:first-child {
-            padding: 2rem 1.5rem 2.5rem !important;
-          }
-          section > div:nth-child(2) {
-            min-height: 45vh;
-          }
-        }
-      `}</style>
     </section>
   );
 }

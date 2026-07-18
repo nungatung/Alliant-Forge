@@ -15,8 +15,8 @@ const paths: EngagementPath[] = [
   {
     title: "Make an Impact",
     description:
-      "Your contribution directly funds scholarships, infrastructure projects, and community development initiatives across Africa. Every dollar creates measurable impact — from STEM education programs for young women to renewable energy microgrids in underserved communities. Whether you give once or become a monthly supporter, your generosity builds lasting change where it matters most.",
-    cta: "Make a Donation",
+      "Your investment drives scholarships, infrastructure upgrades, and community development initiatives across the Global South. Each contribution generates tangible returns,  from advancing STEM education for young women and equipping youth with future-ready skills, to expanding renewable energy microgrids and strengthening local economies. Beyond physical infrastructure, your support also advances Nature-Based Solutions, restoring ecosystems, strengthening climate resilience, and creating sustainable livelihoods. Whether you choose a one-time investment or ongoing support, you are building enduring value and driving sustainable progress for communities. Building lasting change where it matters most.",
+    cta: "Partner with Us",
     href: "#",
     accentColor: "#D5AA72",
     bgPattern: "radial-gradient(circle at 0% 100%, rgba(213,170,114,0.1) 0%, transparent 50%)",

@@ -6,12 +6,12 @@ import { motion, AnimatePresence } from 'framer-motion';
 
 const linkColors: Record<string, string> = {
   'Home': '#4F6C8A',
-  'Who We Are': '#D5AA72',
-  'Strategic Pillars': '#9cb681ff',
-  'All Pages': '#D5AA72',
-  'Our Work': '#9cb681ff',
+  'Who We Are': '#4F6C8A',
+  'Strategic Pillars': '#4F6C8A',
+  'All Pages': '#4F6C8A',
+  'Our Work': '#4F6C8A',
   'Make An Impact': '#4F6C8A',
-  'Get In Touch': '#D5AA72',
+  'Get In Touch': '#4F6C8A',
 };
 
 export default function Navbar() {
@@ -54,7 +54,7 @@ export default function Navbar() {
   const moreLinks = [
     { label: 'Our Work', href: '/' },
     { label: 'Make An Impact', href: '#impact' },
-    { label: 'Get In Touch', href: '#contact' },
+    { label: 'Get In Touch', href: '#contact-us' },
   ];
 
   const closeAll = () => {

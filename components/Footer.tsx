@@ -4,10 +4,10 @@ import Image from 'next/image';
 
 const linkColors: Record<string, string> = {
   Home: '#4F6C8A',
-  'Who We Are': '#D5AA72',
-  'Our Work': '#9cb681ff',
+  'Who We Are': '#4F6C8A',
+  'Our Work': '#4F6C8A',
   'Strategic Pillars': '#4F6C8A',
-  'Make An Impact': '#9cb681ff',
+  'Make An Impact': '#4F6C8A',
 };
 
 export default function Footer() {
@@ -77,6 +77,7 @@ export default function Footer() {
           </div>
 
           {/* Right: Get in Touch links */}
+          <section id='contact-us'>
           <div className="col-span-3 w-full md:col-span-1">
             <span className="mb-1 text-sm text-gray-400 uppercase tracking-wider">
               Get in Touch
@@ -100,6 +101,7 @@ export default function Footer() {
               ))}
             </div>
           </div>
+          </section>
         </div>
 
         {/* Bottom border */}

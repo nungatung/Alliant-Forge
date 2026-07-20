@@ -32,7 +32,7 @@ const heroSlides = [
     objectPosition: '70% center',
     headline: 'Driving global impact',
     subline: 'through',
-    highlight: 'excellent project management',
+    highlight: 'rigorous project management execution',
     highlightColor: '#D5AA72',
   },
 ];
@@ -47,7 +47,7 @@ export default function HeroSection() {
 
  
   useEffect(() => {
-    const interval = setInterval(nextSlide, 8000);
+    const interval = setInterval(nextSlide, 7000);
     return () => clearInterval(interval);
   }, [nextSlide]);
 

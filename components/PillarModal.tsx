@@ -234,7 +234,8 @@ const pillarContent: Record<string, {
                         At <span className='font-semibold text-[#4F6C8A]'>Alliant Forge</span>, we strive to build a future where technology and sustainability go hand in hand. Innovation sparks ideas into impact, while sustainable growth ensures progress endures for generations. By aligning technological breakthroughs with environmental responsibility, we transform forward-thinking ideas into measurable community impact. Together, these principles form our blueprint for resilient communities, thriving industries, and a planet that prospers without compromise.
                     </p>
 
-                    <h2 className="text-xl sm:text-2xl font-medium text-[#4F6C8A] mt-10 mb-5 leading-relaxed"> Green and Sustainable Energy Transition </h2>
+                    <p className="text-xl sm:text-2xl font-medium text-[#4F6C8A] mt-10 mb-5 leading-relaxed"> Green and Sustainable Energy Transition </p>
+                    
                     <p className="text-gray-600">
                         At Alliant Forge, we believe innovation begins with clean energy and responsible engineering. Through solar integration, energy-efficient design, and green construction practices, we reduce our carbon footprint and create infrastructure that harmonizes with nature.
                         We partner with leading solar innovators and engineers to embed renewable energy systems into affordable housing, schools, clinics, and public facilities, ensuring clean power reaches those who need it most.
@@ -246,27 +247,30 @@ const pillarContent: Record<string, {
                     </p>
 
 
-                    <h2 className="text-xl sm:text-2xl font-medium text-[#4F6C8A] mt-10 mb-5 leading-relaxed">Smart & Sustainable Construction Services</h2>
+                    <p className="text-xl sm:text-2xl font-medium text-[#4F6C8A] mt-10 mb-5 leading-relaxed">Smart & Sustainable Construction Services</p>
+                    
                     <p className="text-gray-600">
                         At Alliant Forge, we believe sustainable growth depends on intelligent design and efficient resource use. By advancing smart civil engineering practices, such as modular construction, digital modeling, and low-impact materials, we create infrastructure that endures environmental and economic challenges while working in harmony with nature.
-                        To drive sustainable development, we combine visionary partnerships with practical capacity-building through:
+                        To drive sustainable development, we combine visionary partnerships with practical capacity-building through:</p>
                         <p><span className='font-semibold text-[#4F6C8A]'>• Strategic Pilots:</span> Collaborating with construction firms and technology providers to launch projects that demonstrate lifecycle assessments and achieve green certifications.</p>
                         <p><span className='font-semibold text-[#4F6C8A]'>• Academic Integrations:</span> Partnering with universities and vocational colleges to embed Building Information Modelling (BIM) and modular construction into curricula.</p>
                         <p><span className='font-semibold text-[#4F6C8A]'>• Workforce Development:</span> Offering apprenticeships with industry partners that give young engineers and artisans hands-on experience in sustainable practices.</p>
                         <p><span className='font-semibold text-[#4F6C8A]'>• Credential Pathways:</span> Establishing certification tracks that build professional credibility and accelerate widespread adoption of sustainable building methods.</p>
-                    </p>
+                    
 
 
-                    <h2 className="text-xl sm:text-2xl font-medium text-[#4F6C8A] mt-10 mb-5 leading-relaxed">Infrastructure Stewardship and Advisory Services</h2>
+                    <p className="text-xl sm:text-2xl font-medium text-[#4F6C8A] mt-10 mb-5 leading-relaxed">Infrastructure Stewardship and Advisory Services</p>
+                    
                     <p className="text-gray-600">
-                        At Alliant Forge, we believe that Innovation must serve both people and the planet. Wastewater treatment and recycling systems show how engineering can transform waste into opportunity, while nature-based solutions (NBS), such as constructed wetlands, green roofs, and permeable pavements, restore ecosystems and address urban challenges. By collaborating with municipalities, environmental scientists, and community stakeholders, we embed circular water management into infrastructure projects, ensuring resilience and shared stewardship.
+                        At Alliant Forge, we believe that Innovation must serve both people and the planet. Wastewater treatment and recycling systems show how engineering can transform waste into opportunity, while nature-based solutions (NBS), such as constructed wetlands, green roofs, and permeable pavements, restore ecosystems and address urban challenges. By collaborating with municipalities, environmental scientists, and community stakeholders, we embed circular water management into infrastructure projects, ensuring resilience and shared stewardship.</p>
 
-                        <h2 className="text-lg sm:text-xl font-medium text-[#4F6C8A] mt-10 mb-2 leading-relaxed">Through this dedicated approach, we deliver:</h2>
+                        <p className="text-lg sm:text-xl font-medium text-[#4F6C8A] mt-10 mb-2 leading-relaxed">Through this dedicated approach, we deliver:</p>
+                        
                         <p className="text-gray-600"><span className='font-semibold text-[#4F6C8A]'>• Technical Advisory & Infrastructure Upgrades:</span> Integrating wastewater recycling and NBS into urban planning, while managing essential facility repairs and upgrades to support long-term system reliability.</p>
                         <p className="text-gray-600"><span className='font-semibold text-[#4F6C8A]'>• Community Stewardship & Awareness:</span> Engaging residents in the design and upkeep of NBS systems, fostering ownership, accountability, and public awareness of health and environmental benefits.</p>
                         <p className="text-gray-600"><span className='font-semibold text-[#4F6C8A]'>• Resilient Funding Models:</span> Structuring blended financing combining donor support, municipal budgets, and private investment, to guarantee affordability and sustainability.</p>
                         <p className="text-gray-600"><span className='font-semibold text-[#4F6C8A]'>• Capacity Building:</span> Partnering with universities, vocational colleges, and local cooperatives to train technicians, embed NBS into curricula, and create jobs through apprenticeships and certification pathways.</p>
-                    </p>
+                    
                 </div>
 
                 <div className="clear-both" />

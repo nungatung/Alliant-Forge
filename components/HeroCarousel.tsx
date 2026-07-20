@@ -32,7 +32,7 @@ const heroSlides = [
     objectPosition: '70% center',
     headline: 'Driving global impact',
     subline: 'through',
-    highlight: 'rigorous project management execution',
+    highlight: 'rigorous project and program management execution',
     highlightColor: '#D5AA72',
   },
 ];

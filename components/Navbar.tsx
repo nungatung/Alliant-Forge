@@ -95,14 +95,14 @@ export default function Navbar() {
           {/* Center: Desktop + Tablet Links */}
           <div className="hidden md:flex flex-1 items-center justify-end gap-1 lg:gap-3 xl:gap-1">
             {mainLinks.map((link) => {
-              const hoverColor = linkColors[link.label] || '#4F6C8A';
+              const hoverColor = linkColors[link.label] || '#084898';
               return (
                 <a
                   key={link.label}
                   href={link.href}
                   className="px-2 lg:px-6 py-2 text-sm lg:text-base font-medium rounded-md transition-colors duration-200 whitespace-nowrap"
                   style={{
-                    color: hoveredLink === link.label ? hoverColor : '#374151',
+                    color: hoveredLink === link.label ? hoverColor : '#084898',
                   }}
                   onMouseEnter={() => setHoveredLink(link.label)}
                   onMouseLeave={() => setHoveredLink(null)}
@@ -133,8 +133,8 @@ export default function Navbar() {
                 style={{
                   color:
                     hoveredLink === 'All Pages'
-                      ? linkColors['All Pages'] || '#D5AA72'
-                      : '#374151',
+                      ? linkColors['All Pages'] || '#084898'
+                      : '#084898',
                 }}
                 aria-expanded={isDropdownOpen}
               >
@@ -174,7 +174,7 @@ export default function Navbar() {
                     className="absolute right-0 mt-1 w-52 bg-white rounded-lg shadow-lg border border-gray-100 z-40 overflow-hidden"
                   >
                     <div className="py-1.5">
-                      {moreLinks.map((item) => {
+                      {moreLinks.map((item) => {``
                         const hoverColor = linkColors[item.label] || '#4F6C8A';
                         return (
                           <a
@@ -186,7 +186,7 @@ export default function Navbar() {
                               color:
                                 hoveredLink === item.label
                                   ? hoverColor
-                                  : '#374151',
+                                  : '#084898',
                             }}
                             onMouseEnter={() => setHoveredLink(item.label)}
                             onMouseLeave={() => setHoveredLink('All Pages')}
@@ -320,7 +320,7 @@ export default function Navbar() {
                       className="block py-3 px-3 rounded-lg text-base font-medium transition-colors duration-200"
                       style={{
                         color:
-                          hoveredLink === item.label ? hoverColor : '#374151',
+                          hoveredLink === item.label ? hoverColor : '#084898',
                       }}
                       onMouseEnter={() => setHoveredLink(item.label)}
                       onMouseLeave={() => setHoveredLink(null)}

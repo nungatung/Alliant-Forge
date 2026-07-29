@@ -17,7 +17,7 @@ export default function PartnersMarquee() {
   return (
     <section className="py-16 md:py-20 bg-[#FFFAFA] border-t border-b border-gray-100">
       <div className="max-w-7xl mx-auto px-6">
-        <h3 className="text-2xl md:text-3xl font-bold text-gray-800 text-center mb-12">
+        <h3 className="text-2xl md:text-3xl font-bold text-zinc-800/95 text-center mb-12">
           Better Together With
         </h3>
 

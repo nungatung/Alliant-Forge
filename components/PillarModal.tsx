@@ -190,7 +190,7 @@ const pillarContent: Record<string, {
 }> = {
     'innovation-and-accelerating-infrastructure-stewardship': {
         title: 'Innovation & Accelerating Infrastructure Stewardship',
-        accentColor: '#4F6C8A',
+        accentColor: '#084898',
         headerBg: '#FAFAFA',
         content: (
             <div className="relative">
@@ -208,7 +208,7 @@ const pillarContent: Record<string, {
                             icon={<SmartIndustryIcon />}
                             tagline="Empowering smart, sustainable industries."
                             description="Sustainable growth reaches economies that use efficient safer advantaging of an estimable economy."
-                            accentColor="#4F6C8A"
+                            accentColor="#084898"
                             delay={0.1}
                         />
                         <CookieCard
@@ -222,7 +222,7 @@ const pillarContent: Record<string, {
                             icon={<PartnershipIcon />}
                             tagline="Global partnerships for shared prosperity."
                             description="Collaborating across borders to drive inclusive and equitable progress."
-                            accentColor="#9cb681"
+                            accentColor="#A85D6A"
                             delay={0.3}
                         />
                     </div>
@@ -230,47 +230,50 @@ const pillarContent: Record<string, {
 
                 {/* Text content */}
                 <div className="text-gray-600 leading-relaxed space-y-6">
-                    <p className="text-lg sm:text-xl font-medium text-gray-700 leading-relaxed">
-                        At <span className='font-semibold text-[#4F6C8A]'>Alliant Forge</span>, we strive to build a future where technology and sustainability go hand in hand. Innovation sparks ideas into impact, while sustainable growth ensures progress endures for generations. By aligning technological breakthroughs with environmental responsibility, we transform forward-thinking ideas into measurable community impact. Together, these principles form our blueprint for resilient communities, thriving industries, and a planet that prospers without compromise.
-                    </p>
-
-                    <p className="text-xl sm:text-2xl font-medium text-[#4F6C8A] mt-10 mb-5 leading-relaxed"> Green and Sustainable Energy Transition </p>
-                    
                     <p className="text-gray-600">
-                        At Alliant Forge, we believe innovation begins with clean energy and responsible engineering. Through solar integration, energy-efficient design, and green construction practices, we reduce our carbon footprint and create infrastructure that harmonizes with nature.
-                        We partner with leading solar innovators and engineers to embed renewable energy systems into affordable housing, schools, clinics, and public facilities, ensuring clean power reaches those who need it most.
-                        To guarantee affordability and reliability, we leverage blended financing models that combine:
-                        <p><span className='font-semibold text-[#4F6C8A]'>• Donor Funding</span> </p>
-                        <p><span className='font-semibold text-[#4F6C8A]'>• Government Subsidies</span> </p>
-                        <p><span className='font-semibold text-[#4F6C8A]'>• Private Investment</span></p>
-                        Community energy cooperatives and local technician training programs ensure long-term maintenance, create jobs, and sustain resilience for generations.
+                        At <span className='font-bold text-gray-600'>Alliant Forge</span>, we strive to build a future where technology and sustainability go hand in hand. Innovation sparks ideas into impact, while sustainable growth ensures progress endures for generations. By aligning technological breakthroughs with environmental responsibility, we transform forward-thinking ideas into measurable community impact. Together, these principles form our blueprint for resilient communities, thriving industries, and a planet that prospers without compromise.
                     </p>
 
+                    <p className="text-xl sm:text-2xl font-medium text-[#084898] mt-10 mb-5 leading-relaxed"> Green and Sustainable Energy Transition </p>
 
-                    <p className="text-xl sm:text-2xl font-medium text-[#4F6C8A] mt-10 mb-5 leading-relaxed">Smart & Sustainable Construction Services</p>
-                    
+                    {/* FIXED: Changed outer <p> to <div> and inner <p> bullets to <div> */}
+                    <div className="text-gray-600">
+                        <p>At Alliant Forge, we believe innovation begins with clean energy and responsible engineering. Through solar integration, energy-efficient design, and green construction practices, we reduce our carbon footprint and create infrastructure that harmonizes with nature.</p>
+                        <p className="mt-3">We partner with leading solar innovators and engineers to embed renewable energy systems into affordable housing, schools, clinics, and public facilities, ensuring clean power reaches those who need it most.</p>
+                        <p className="mt-3">To guarantee affordability and reliability, we leverage blended financing models that combine:</p>
+                        <div className="mt-2 mb-2 space-y-1">
+                            <div><span className='font-semibold text-[#084898]'>• Donor Funding</span></div>
+                            <div><span className='font-semibold text-[#084898]'>• Government Subsidies</span></div>
+                            <div><span className='font-semibold text-[#084898]'>• Private Investment</span></div>
+                        </div>
+                        <p>Community energy cooperatives and local technician training programs ensure long-term maintenance, create jobs, and sustain resilience for generations.</p>
+                    </div>
+
+
+                    <p className="text-xl sm:text-2xl font-medium text-[#084898] mt-10 mb-5 leading-relaxed">Smart & Sustainable Construction Services</p>
+
                     <p className="text-gray-600">
                         At Alliant Forge, we believe sustainable growth depends on intelligent design and efficient resource use. By advancing smart civil engineering practices, such as modular construction, digital modeling, and low-impact materials, we create infrastructure that endures environmental and economic challenges while working in harmony with nature.
                         To drive sustainable development, we combine visionary partnerships with practical capacity-building through:</p>
-                        <p><span className='font-semibold text-[#4F6C8A]'>• Strategic Pilots:</span> Collaborating with construction firms and technology providers to launch projects that demonstrate lifecycle assessments and achieve green certifications.</p>
-                        <p><span className='font-semibold text-[#4F6C8A]'>• Academic Integrations:</span> Partnering with universities and vocational colleges to embed Building Information Modelling (BIM) and modular construction into curricula.</p>
-                        <p><span className='font-semibold text-[#4F6C8A]'>• Workforce Development:</span> Offering apprenticeships with industry partners that give young engineers and artisans hands-on experience in sustainable practices.</p>
-                        <p><span className='font-semibold text-[#4F6C8A]'>• Credential Pathways:</span> Establishing certification tracks that build professional credibility and accelerate widespread adoption of sustainable building methods.</p>
-                    
+                    <p><span className='font-semibold text-[#084898]'>• Strategic Pilots:</span> Collaborating with construction firms and technology providers to launch projects that demonstrate lifecycle assessments and achieve green certifications.</p>
+                    <p><span className='font-semibold text-[#084898]'>• Academic Integrations:</span> Partnering with universities and vocational colleges to embed Building Information Modelling (BIM) and modular construction into curricula.</p>
+                    <p><span className='font-semibold text-[#084898]'>• Workforce Development:</span> Offering apprenticeships with industry partners that give young engineers and artisans hands-on experience in sustainable practices.</p>
+                    <p><span className='font-semibold text-[#084898]'>• Credential Pathways:</span> Establishing certification tracks that build professional credibility and accelerate widespread adoption of sustainable building methods.</p>
 
 
-                    <p className="text-xl sm:text-2xl font-medium text-[#4F6C8A] mt-10 mb-5 leading-relaxed">Infrastructure Stewardship and Advisory Services</p>
-                    
+
+                    <p className="text-xl sm:text-2xl font-medium text-[#084898] mt-10 mb-5 leading-relaxed">Infrastructure Stewardship and Advisory Services</p>
+
                     <p className="text-gray-600">
                         At Alliant Forge, we believe that Innovation must serve both people and the planet. Wastewater treatment and recycling systems show how engineering can transform waste into opportunity, while nature-based solutions (NBS), such as constructed wetlands, green roofs, and permeable pavements, restore ecosystems and address urban challenges. By collaborating with municipalities, environmental scientists, and community stakeholders, we embed circular water management into infrastructure projects, ensuring resilience and shared stewardship.</p>
 
-                        <p className="text-lg sm:text-xl font-medium text-[#4F6C8A] mt-10 mb-2 leading-relaxed">Through this dedicated approach, we deliver:</p>
-                        
-                        <p className="text-gray-600"><span className='font-semibold text-[#4F6C8A]'>• Technical Advisory & Infrastructure Upgrades:</span> Integrating wastewater recycling and NBS into urban planning, while managing essential facility repairs and upgrades to support long-term system reliability.</p>
-                        <p className="text-gray-600"><span className='font-semibold text-[#4F6C8A]'>• Community Stewardship & Awareness:</span> Engaging residents in the design and upkeep of NBS systems, fostering ownership, accountability, and public awareness of health and environmental benefits.</p>
-                        <p className="text-gray-600"><span className='font-semibold text-[#4F6C8A]'>• Resilient Funding Models:</span> Structuring blended financing combining donor support, municipal budgets, and private investment, to guarantee affordability and sustainability.</p>
-                        <p className="text-gray-600"><span className='font-semibold text-[#4F6C8A]'>• Capacity Building:</span> Partnering with universities, vocational colleges, and local cooperatives to train technicians, embed NBS into curricula, and create jobs through apprenticeships and certification pathways.</p>
-                    
+                    <p className="text-lg sm:text-xl font-medium text-[#084898] mt-10 mb-2 leading-relaxed">Through this dedicated approach, we deliver:</p>
+
+                    <p className="text-gray-600"><span className='font-semibold text-[#084898]'>• Technical Advisory & Infrastructure Upgrades:</span> Integrating wastewater recycling and NBS into urban planning, while managing essential facility repairs and upgrades to support long-term system reliability.</p>
+                    <p className="text-gray-600"><span className='font-semibold text-[#084898]'>• Community Stewardship & Awareness:</span> Engaging residents in the design and upkeep of NBS systems, fostering ownership, accountability, and public awareness of health and environmental benefits.</p>
+                    <p className="text-gray-600"><span className='font-semibold text-[#084898]'>• Resilient Funding Models:</span> Structuring blended financing combining donor support, municipal budgets, and private investment, to guarantee affordability and sustainability.</p>
+                    <p className="text-gray-600"><span className='font-semibold text-[#084898]'>• Capacity Building:</span> Partnering with universities, vocational colleges, and local cooperatives to train technicians, embed NBS into curricula, and create jobs through apprenticeships and certification pathways.</p>
+
                 </div>
 
                 <div className="clear-both" />
@@ -298,6 +301,7 @@ const pillarContent: Record<string, {
                                     src="/pillars/empowerment-1.webp"
                                     alt="Empowerment initiative"
                                     fill
+                                    sizes="(max-width: 768px) 100vw, (max-width: 1024px) 33vw, 400px"
                                     className="object-cover"
                                 />
                             </div>
@@ -314,6 +318,7 @@ const pillarContent: Record<string, {
                                     src="/pillars/empowerment-2.webp"
                                     alt="Education program"
                                     fill
+                                    sizes="(max-width: 768px) 100vw, (max-width: 1024px) 33vw, 400px"
                                     className="object-cover"
                                 />
                             </div>
@@ -323,8 +328,8 @@ const pillarContent: Record<string, {
 
                 {/* Text content */}
                 <div className="text-gray-600 leading-relaxed space-y-6">
-                    <p className="text-lg sm:text-xl font-medium text-gray-800 leading-relaxed">
-                        In every community, sparks of brilliance wait to be <span className="text-[#CC7303] italic">ignited</span>. A young woman dreams of designing bridges that connect people. A youth learns to repair machines, turning raw skill into a livelihood. These stories are not isolated; they are the <span className="text-[#094AA0] font-bold">heartbeat of progress.</span>
+                    <p className="text-gray-600">
+                        In every community, sparks of brilliance wait to be <span className="text-[#CC7303] italic">ignited</span>. A young woman dreams of designing bridges that connect people. A youth learns to repair machines, turning raw skill into a livelihood. These stories are not isolated; they are the <span className="text-[#084898] font-bold">heartbeat of progress.</span>
                     </p>
 
                     <p className="text-gray-600">
@@ -395,7 +400,7 @@ const pillarContent: Record<string, {
                             icon={<GlobalKnowledgeIcon />}
                             tagline="Global Knowledge, Local Progress."
                             description="Bringing world-class expertise to grassroots initiatives, transforming innovation into local opportunity."
-                            accentColor="#4F6C8A"
+                            accentColor="#084898"
                             delay={0.3}
                         />
                     </div>
@@ -408,11 +413,11 @@ const pillarContent: Record<string, {
                     </p>
 
                     <p className="text-gray-600">
-                        Communities thrive when they are gently equipped with the skills, resources, and leadership needed to shape their own futures. We focus on nurturing local capacity by supporting heartfelt training programs, leadership development, and resource mobilization. By embedding vital skills within these spaces—from entrepreneurship to technical trades—we pave the way for lasting resilience and true independence. Every local empowerment initiative is thoughtfully co-designed alongside residents, ensuring that solutions naturally reflect their unique priorities and cultural context.
+                        Communities thrive when they are gently equipped with the skills, resources, and leadership needed to shape their own futures. We focus on nurturing local capacity by supporting heartfelt training programs, leadership development, and resource mobilization. By embedding vital skills within these spaces from entrepreneurship to technical trades we pave the way for lasting resilience and true independence. Every local empowerment initiative is thoughtfully co-designed alongside residents, ensuring that solutions naturally reflect their unique priorities and cultural context.
                     </p>
 
                     <p className="text-gray-600">
-                        Complex challenges demand cross-sector collaboration. At <span className="font-bold text-gray-600">Alliant Forge</span>, we are proud to bring together NGOs, businesses, and government agencies to co-design projects that blend technical expertise with deep local knowledge. By fostering collaborative initiatives—ranging from essential infrastructure upgrades to vital social programs—we ensure every solution is practical, scalable, and sustainable. As a non-profit organization, our role is to serve as the bridge, making sure that shared expertise truly translates into a meaningful impact on the ground.
+                        Complex challenges demand cross-sector collaboration. At <span className="font-bold text-gray-600">Alliant Forge</span>, we are proud to bring together NGOs, businesses, and government agencies to co-design projects that blend technical expertise with deep local knowledge. By fostering collaborative initiatives ranging from essential infrastructure upgrades to vital social programs we ensure every solution is practical, scalable, and sustainable. As a non-profit organization, our role is to serve as the bridge, making sure that shared expertise truly translates into a meaningful impact on the ground.
                     </p>
 
                     <p className="text-gray-600">
@@ -481,14 +486,14 @@ export default function PillarModal({ isOpen, onClose, pillarId }: PillarModalPr
                             style={{ backgroundColor: pillar.headerBg }}
                         >
                             <div className="w-20 h-1 rounded-full mb-4" style={{ backgroundColor: pillar.accentColor }} />
-                            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 leading-tight pr-12">
+                            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-zinc-800/95 leading-tight pr-12">
                                 {pillar.title}
                             </h2>
 
                             {/* Close X Button */}
                             <button
                                 onClick={onClose}
-                                className="absolute top-4 right-4 sm:top-6 sm:right-6 w-10 h-10 flex items-center justify-center rounded-full bg-white/80 hover:bg-white text-gray-500 hover:text-gray-800 transition-all duration-200 shadow-sm hover:shadow-md cursor-pointer"
+                                className="absolute top-4 right-4 sm:top-6 sm:right-6 w-10 h-10 flex items-center justify-center rounded-full bg-white/80 hover:bg-white text-gray-600 hover:text-gray-800 transition-all duration-200 shadow-sm hover:shadow-md cursor-pointer"
                                 aria-label="Close modal"
                             >
                                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">

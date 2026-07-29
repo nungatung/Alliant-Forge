@@ -82,7 +82,7 @@ export default function MissionAndWorkSection() {
 
               <p className="text-base sm:text-lg md:text-xl mb-6 sm:mb-8 max-w-lg leading-relaxed opacity-90">
                 Our work spans women and youth in STEM, renewable energy infrastructure,
-                community development, strategic partnerships, and skills training—all
+                community development, strategic partnerships and skills training all
                 rooted in the belief that lasting change emerges from collective effort
                 and intentional innovation.
               </p>
@@ -111,11 +111,7 @@ export default function MissionAndWorkSection() {
                   transition={{ duration: 0.6, delay: idx * 0.1 }}
                   viewport={{ once: true }}
                 >
-                  {/* Icon */}
-                  <div className="mb-3 sm:mb-4 flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-white/20">
-                    {item.icon}
-                  </div>
-
+              
                   {/* Title */}
                   <h3 className="text-lg sm:text-xl font-bold text-white mb-2 sm:mb-3">
                     {item.title}

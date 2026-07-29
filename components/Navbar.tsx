@@ -39,7 +39,7 @@ export default function Navbar() {
 
   useEffect(() => {
     const onResize = () => {
-      if (window.innerWidth >= 768) setIsMenuOpen(false);
+      if (window.innerWidth >= 1024) setIsMenuOpen(false);
     };
     window.addEventListener('resize', onResize);
     return () => window.removeEventListener('resize', onResize);
@@ -53,8 +53,8 @@ export default function Navbar() {
 
   const moreLinks = [
     { label: 'Our Work', href: '/' },
-    { label: 'Make An Impact', href: '#impact' },
-    { label: 'Get In Touch', href: '#contact-us' },
+    { label: 'Make An Impact', href: '/donate' },
+    { label: 'Get In Touch', href: '/contact' },
   ];
 
   const closeAll = () => {
@@ -66,11 +66,10 @@ export default function Navbar() {
     <>
       <nav
         ref={navRef}
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ease-out ${
-          isScrolled
-            ? 'backdrop-blur-md bg-white/90 shadow-sm'
-            : 'bg-white/95'
-        }`}
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ease-out ${isScrolled
+          ? 'backdrop-blur-md bg-white/90 shadow-sm'
+          : 'bg-white/95'
+          }`}
         style={{ borderBottom: '3px solid rgba(213,170,114,0.25)' }}
       >
         <div className="max-w-[1440px] mx-auto pl-1 pr-3 sm:pl-2 sm:pr-4 lg:pl-4 lg:pr-8 py-2 flex items-center justify-between">
@@ -87,20 +86,21 @@ export default function Navbar() {
               alt="Alliant Forge"
               width={450}
               height={120}
-              className="object-contain object-left -mt-4 -mb-8 -mr-8"
+              className="object-contain object-left -mt-7 -mb-8 -mr-8"
               priority
+              style={{ width: 'auto', height: 'auto' }}
             />
           </div>
 
           {/* Center: Desktop + Tablet Links */}
-          <div className="hidden md:flex flex-1 items-center justify-end gap-1 lg:gap-3 xl:gap-1">
+          <div className="hidden lg:flex flex-1 items-center justify-end gap-2 xl:gap-4">
             {mainLinks.map((link) => {
               const hoverColor = linkColors[link.label] || '#084898';
               return (
                 <a
                   key={link.label}
                   href={link.href}
-                  className="px-2 lg:px-6 py-2 text-sm lg:text-base font-medium rounded-md transition-colors duration-200 whitespace-nowrap"
+                  className="px-3 xl:px-5 py-2 text-[18px] font-medium rounded-md transition-colors duration-200 whitespace-nowrap"
                   style={{
                     color: hoveredLink === link.label ? hoverColor : '#084898',
                   }}
@@ -129,7 +129,7 @@ export default function Navbar() {
             >
               <button
                 onClick={() => setIsDropdownOpen((s) => !s)}
-                className="flex items-center gap-1 px-2 lg:px-3 py-2 text-sm lg:text-base font-medium rounded-md transition-colors duration-200 whitespace-nowrap cursor-pointer"
+                className="flex items-center gap-1 px-3 xl:px-5 py-2 text-[18px] font-medium rounded-md transition-colors duration-200 whitespace-nowrap cursor-pointer"
                 style={{
                   color:
                     hoveredLink === 'All Pages'
@@ -174,14 +174,15 @@ export default function Navbar() {
                     className="absolute right-0 mt-1 w-52 bg-white rounded-lg shadow-lg border border-gray-100 z-40 overflow-hidden"
                   >
                     <div className="py-1.5">
-                      {moreLinks.map((item) => {``
+                      {moreLinks.map((item) => {
+                        ``
                         const hoverColor = linkColors[item.label] || '#4F6C8A';
                         return (
                           <a
                             key={item.label}
                             href={item.href}
                             onClick={() => setIsDropdownOpen(false)}
-                            className="block px-4 py-2.5 text-sm transition-colors duration-200"
+                            className="block px-4 py-2.5 text-md transition-colors duration-200"
                             style={{
                               color:
                                 hoveredLink === item.label
@@ -202,11 +203,11 @@ export default function Navbar() {
             </div>
 
             {/* Separator */}
-            <div className="hidden md:block w-px h-10 bg-gray-400 mx-2" />
+            {/* <div className="hidden lg:block w-px h-10 bg-gray-400 mx-2" /> */}
 
             {/* Social Icons — COMMENTED OUT */}
             {/*
-            <div className="hidden md:flex items-center gap-2">
+            <div className="hidden lg:flex items-center gap-2">
               <a
                 href="https://facebook.com"
                 target="_blank"
@@ -247,7 +248,7 @@ export default function Navbar() {
           </div>
 
           {/* Right: Mobile Hamburger */}
-          <div className="md:hidden flex-shrink-0 ml-2">
+          <div className="lg:hidden flex-shrink-0 ml-2">
             <button
               onClick={() => setIsMenuOpen((s) => !s)}
               aria-label={isMenuOpen ? 'Close menu' : 'Open menu'}
@@ -294,7 +295,7 @@ export default function Navbar() {
         {isMenuOpen && (
           <>
             <motion.div
-              className="fixed inset-0 z-30 bg-black/20 md:hidden"
+              className="fixed inset-0 z-30 bg-black/20 lg:hidden"
               onClick={() => setIsMenuOpen(false)}
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -302,7 +303,7 @@ export default function Navbar() {
             />
 
             <motion.div
-              className="fixed left-0 right-0 z-40 bg-white shadow-lg md:hidden rounded-b-xl"
+              className="fixed left-0 right-0 z-40 bg-white shadow-lg lg:hidden rounded-b-xl"
               style={{ top: navHeight || 64 }}
               initial={{ opacity: 0, y: -10 }}
               animate={{ opacity: 1, y: 0 }}

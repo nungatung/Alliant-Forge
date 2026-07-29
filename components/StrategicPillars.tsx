@@ -17,7 +17,7 @@ const pillars: Pillar[] = [
   {
     id: 'innovation-and-accelerating-infrastructure-stewardship',
     title: 'Innovation & Accelerating Infrastructure Stewardship',
-    accentColor: '#4F6C8A',
+    accentColor: '#084898',
     bulletPoints: [
       'Renewable Energy Solutions',
       'Eco-Friendly Infrastructure',
@@ -102,12 +102,12 @@ export default function StrategicPillars() {
             transition={{ duration: 0.7 }}
             className="text-center mb-16 lg:mb-20"
           >
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-8 leading-tight">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-zinc-800/95 mb-8 leading-tight">
               Our Strategic Pillar Framework
             </h2>
-            <div className="text-gray-700 text-base font-normal sm:text-lg leading-relaxed">
+            <div className="text-gray-600 text-base font-normal sm:text-lg leading-relaxed">
               <p className="w-3/4 mx-auto">
-                At Alliant Forge, we turn ambition into measurable impact. Our strategic framework drives sustainable transformation by merging technical expertise with social empowerment. We pioneer <span className="font-semibold text-[#4F6C8A]">sustainable engineering</span> and <span className="font-semibold text-[#9cb681]">climate-adaptive design</span> to put women and youth at the center of STEM-driven development.
+                At Alliant Forge, we turn ambition into measurable impact. Our strategic framework drives sustainable transformation by merging technical expertise with social empowerment. We pioneer <span className="font-semibold text-[#084898]">sustainable engineering</span> and <span className="font-semibold text-[#9cb681]">climate-adaptive design</span> to put women and youth at the center of STEM-driven development.
               </p>
               <p className="w-3/4 mx-auto mt-5">
                 We deliver these initiatives through excellence in <span className="font-semibold text-[#D5AA72]">project and program management</span>, ensuring every alliance we forge contributes directly to a more inclusive, resilient, and sustainable world.
@@ -148,7 +148,9 @@ export default function StrategicPillars() {
                       src={pillar.imageSrc}
                       alt={pillar.title}
                       fill
+                      sizes="(max-width: 768px) 100vw, (max-width: 1024px) 33vw, 400px"
                       className="object-cover"
+                      
                     />
                   </div>
 
@@ -183,20 +185,6 @@ export default function StrategicPillars() {
               </motion.div>
             ))}
           </div>
-
-          {/* Bottom Subheading */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.7, delay: 0.3 }}
-            className="text-center mt-16 lg:mt-24"
-          >
-            <div className="w-24 h-px bg-af-golden-brown/30 mx-auto -mb-12" />
-            <p className="text-2xl sm:text-3xl lg:text-4xl font-semibold text-[#4F6C8A] leading-snug italic">
-              "United for a Sustainable Tomorrow"
-            </p>
-          </motion.div>
         </div>
       </section>
 

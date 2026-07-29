@@ -13,11 +13,11 @@ interface EngagementPath {
 
 const paths: EngagementPath[] = [
   {
-    title: "Make an Impact",
+    title: "",
     description:
-      "Your investment drives scholarships, infrastructure upgrades, and community development initiatives across the Global South. Each contribution generates tangible returns,  from advancing STEM education for young women and equipping youth with future-ready skills, to expanding renewable energy microgrids and strengthening local economies. Beyond physical infrastructure, your support also advances Nature-Based Solutions, restoring ecosystems, strengthening climate resilience, and creating sustainable livelihoods. Whether you choose a one-time investment or ongoing support, you are building enduring value and driving sustainable progress for communities. Building lasting change where it matters most.",
+      "Your investment drives scholarships, infrastructure upgrades, and community development initiatives across the Global South. Each contribution generates tangible returns,  from advancing STEM education for women and equipping youth with future-ready skills, to expanding renewable energy microgrids and strengthening local economies. Beyond physical infrastructure, your support also advances Nature-Based Solutions, restoring ecosystems, strengthening climate resilience, and creating sustainable livelihoods. Whether you choose a one-time investment or ongoing support, you are building enduring value and driving sustainable progress for communities. Building lasting change where it matters most.",
     cta: "Partner with Us",
-    href: "#",
+    href: "/donate",
     accentColor: "#D5AA72",
     bgPattern: "radial-gradient(circle at 0% 100%, rgba(213,170,114,0.1) 0%, transparent 50%)",
   },
@@ -36,10 +36,10 @@ export default function GetInvolved() {
           className="text-center mb-16"
         >
 
-          <h2 className="mt-3 text-4xl sm:text-5xl font-bold text-[#4F6C8A]">
+          <h2 className="mt-3 text-4xl sm:text-5xl font-bold text-zinc-800/95">
             Get Involved
           </h2>
-          <p className="mt-4 text-lg text-forge-gray max-w-2xl mx-auto">
+          <p className="mt-4 text-xl text-gray-700 max-w-2xl mx-auto">
             Your generosity builds lasting change where it matters most.
           </p>
         </motion.div>
@@ -61,11 +61,7 @@ export default function GetInvolved() {
                 style={{ backgroundColor: paths[0].accentColor }}
               />
 
-              <h3 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 mb-6">
-                {paths[0].title}
-              </h3>
-
-              <p className="text-forge-gray leading-relaxed mb-8 text-base sm:text-lg max-w-3xl mx-auto">
+              <p className="text-gray-700 leading-relaxed mb-8 text-base sm:text-lg max-w-3xl mx-auto">
                 {paths[0].description}
               </p>
 

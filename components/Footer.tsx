@@ -8,6 +8,7 @@ const linkColors: Record<string, string> = {
   Home: '#4F6C8A',
   'Who We Are': '#4F6C8A',
   'Our Work': '#4F6C8A',
+  'Contact Us': '#4F6C8A',
   'Strategic Pillars': '#4F6C8A',
   'Make An Impact': '#4F6C8A',
 };
@@ -30,18 +31,19 @@ export default function Footer() {
 
   const orgLinks = [
     { title: 'Home', href: '/' },
-    { title: 'Our Work', href: '/' },
+    { title: 'Our Work', href: '' },
     { title: 'Who We Are', href: '#about' },
+    { title: 'Contact Us', href: '/contact' },
     { title: 'Strategic Pillars', href: '#strategic-pillars' },
-    { title: 'Make An Impact', href: '/donate' },
+    // { title: 'Make An Impact', href: '/donate' },
   ];
 
   const contactLinks = [
     {
-      title: '+1 (555) 123-4567',
-      href: 'tel:+15551234567',
-      icon: '/icons/mobile-phone.png',
-      alt: 'Phone',
+      title: '+1 (780) 318-2241',
+      href: 'tel:+17803182241',
+      icon: '/icons/whatsapp-logo.png',
+      alt: 'Whatsapp',
     },
     {
       title: 'info@alliantforge.org',

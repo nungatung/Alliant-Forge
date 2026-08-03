@@ -53,7 +53,7 @@ export default function Navbar() {
 
   const moreLinks = [
     { label: 'Our Work', href: '/' },
-    { label: 'Make An Impact', href: '/donate' },
+    // { label: 'Make An Impact', href: '/donate' },
     { label: 'Get In Touch', href: '/contact' },
   ];
 

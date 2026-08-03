@@ -27,9 +27,9 @@ const heroSlides = [
   },
   {
     id: 3,
-    src: '/hero/community-action.webp',
+    src: '/wind-turbine.webp',
     alt: 'Community development',
-    objectPosition: '70% center',
+    objectPosition: '70% 75%',
     headline: 'Resilience by design',
     subline: '“Shaping communities for a',
     highlight: 'changing climate”',
@@ -59,7 +59,7 @@ export default function HeroSection() {
       if (intervalRef.current) clearInterval(intervalRef.current);
       return;
     }
-    intervalRef.current = setInterval(nextSlide, 9000);
+    intervalRef.current = setInterval(nextSlide, 10000);
     return () => {
       if (intervalRef.current) clearInterval(intervalRef.current);
     };
@@ -110,7 +110,7 @@ export default function HeroSection() {
         {/* Bottom gradient for indicators */}
         <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
 
-        {/* LEFT ARROW — hidden on mobile/tablet, visible lg+ */}
+        {/* LEFT ARROW */}
         <button
           onClick={prevSlide}
           aria-label="Previous slide"
@@ -121,7 +121,7 @@ export default function HeroSection() {
           </svg>
         </button>
 
-        {/* RIGHT ARROW — hidden on mobile/tablet, visible lg+ */}
+        {/* RIGHT ARROW */}
         <button
           onClick={nextSlide}
           aria-label="Next slide"
@@ -132,7 +132,7 @@ export default function HeroSection() {
           </svg>
         </button>
 
-        {/* Text Content — extra left padding on lg+ to clear the arrow */}
+        {/* Text Content */}
         <div className="absolute inset-0 flex items-center">
           <div className="w-full max-w-[1440px] mx-auto px-6 sm:px-8 lg:pl-24 lg:pr-12 xl:pl-28 xl:pr-16">
             <AnimatePresence mode="wait">
@@ -192,6 +192,7 @@ export default function HeroSection() {
             {String(currentSlide + 1).padStart(2, '0')}
           </span>
 
+          {/* Pause button */}
           <button
             onClick={() => setIsPaused((p) => !p)}
             aria-label={isPaused ? 'Play auto-scroll' : 'Pause auto-scroll'}

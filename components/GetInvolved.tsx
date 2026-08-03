@@ -17,7 +17,7 @@ const paths: EngagementPath[] = [
     description:
       "Your investment drives scholarships, infrastructure upgrades, and community development initiatives across the Global South. Each contribution generates tangible returns,  from advancing STEM education for women and equipping youth with future-ready skills, to expanding renewable energy microgrids and strengthening local economies. Beyond physical infrastructure, your support also advances Nature-Based Solutions, restoring ecosystems, strengthening climate resilience, and creating sustainable livelihoods. Whether you choose a one-time investment or ongoing support, you are building enduring value and driving sustainable progress for communities. Building lasting change where it matters most.",
     cta: "Partner with Us",
-    href: "/donate",
+    href: "mailto:info@alliantforge.org",
     accentColor: "#D5AA72",
     bgPattern: "radial-gradient(circle at 0% 100%, rgba(213,170,114,0.1) 0%, transparent 50%)",
   },

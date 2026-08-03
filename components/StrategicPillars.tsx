@@ -107,7 +107,7 @@ export default function StrategicPillars() {
             </h2>
             <div className="text-gray-600 text-base font-normal sm:text-lg leading-relaxed">
               <p className="w-3/4 mx-auto">
-                At Alliant Forge, we turn ambition into measurable impact. Our strategic framework drives sustainable transformation by merging technical expertise with social empowerment. We pioneer <span className="font-semibold text-[#084898]">sustainable engineering</span> and <span className="font-semibold text-[#9cb681]">climate-adaptive design</span> to put women and youth at the center of STEM-driven development.
+                At Alliant Forge, we turn ambition into measurable impact. Our strategic framework drives sustainable transformation by merging technical expertise with social empowerment. We promote <span className="font-semibold text-[#084898]">sustainable engineering</span> and <span className="font-semibold text-[#9cb681]">climate-adaptive design</span> to put women and youth at the center of STEM-driven development.
               </p>
               <p className="w-3/4 mx-auto mt-5">
                 We deliver these initiatives through excellence in <span className="font-semibold text-[#D5AA72]">project and program management</span>, ensuring every alliance we forge contributes directly to a more inclusive, resilient, and sustainable world.

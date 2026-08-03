@@ -238,7 +238,7 @@ const pillarContent: Record<string, {
 
                     {/* FIXED: Changed outer <p> to <div> and inner <p> bullets to <div> */}
                     <div className="text-gray-600">
-                        <p>At Alliant Forge, we believe innovation begins with clean energy and responsible engineering. Through solar integration, energy-efficient design, and green construction practices, we reduce our carbon footprint and create infrastructure that harmonizes with nature.</p>
+                        <p>At <span className='font-bold text-gray-600'>Alliant Forge</span>, we believe innovation begins with clean energy and responsible engineering. Through solar integration, energy-efficient design, and green construction practices, we reduce our carbon footprint and create infrastructure that harmonizes with nature.</p>
                         <p className="mt-3">We partner with leading solar innovators and engineers to embed renewable energy systems into affordable housing, schools, clinics, and public facilities, ensuring clean power reaches those who need it most.</p>
                         <p className="mt-3">To guarantee affordability and reliability, we leverage blended financing models that combine:</p>
                         <div className="mt-2 mb-2 space-y-1">
@@ -253,7 +253,7 @@ const pillarContent: Record<string, {
                     <p className="text-xl sm:text-2xl font-medium text-[#084898] mt-10 mb-5 leading-relaxed">Smart & Sustainable Construction Services</p>
 
                     <p className="text-gray-600">
-                        At Alliant Forge, we believe sustainable growth depends on intelligent design and efficient resource use. By advancing smart civil engineering practices, such as modular construction, digital modeling, and low-impact materials, we create infrastructure that endures environmental and economic challenges while working in harmony with nature.
+                        At <span className='font-bold text-gray-600'>Alliant Forge</span>, we believe sustainable growth depends on intelligent design and efficient resource use. By advancing smart civil engineering practices, such as modular construction, digital modeling, and low-impact materials, we create infrastructure that endures environmental and economic challenges while working in harmony with nature.
                         To drive sustainable development, we combine visionary partnerships with practical capacity-building through:</p>
                     <p><span className='font-semibold text-[#084898]'>• Strategic Pilots:</span> Collaborating with construction firms and technology providers to launch projects that demonstrate lifecycle assessments and achieve green certifications.</p>
                     <p><span className='font-semibold text-[#084898]'>• Academic Integrations:</span> Partnering with universities and vocational colleges to embed Building Information Modelling (BIM) and modular construction into curricula.</p>
@@ -265,7 +265,7 @@ const pillarContent: Record<string, {
                     <p className="text-xl sm:text-2xl font-medium text-[#084898] mt-10 mb-5 leading-relaxed">Infrastructure Stewardship and Advisory Services</p>
 
                     <p className="text-gray-600">
-                        At Alliant Forge, we believe that Innovation must serve both people and the planet. Wastewater treatment and recycling systems show how engineering can transform waste into opportunity, while nature-based solutions (NBS), such as constructed wetlands, green roofs, and permeable pavements, restore ecosystems and address urban challenges. By collaborating with municipalities, environmental scientists, and community stakeholders, we embed circular water management into infrastructure projects, ensuring resilience and shared stewardship.</p>
+                        At <span className='font-bold text-gray-600'>Alliant Forge</span>, we believe that Innovation must serve both people and the planet. Wastewater treatment and recycling systems show how engineering can transform waste into opportunity, while nature-based solutions (NBS), such as constructed wetlands, green roofs, and permeable pavements, restore ecosystems and address urban challenges. By collaborating with municipalities, environmental scientists, and community stakeholders, we embed circular water management into infrastructure projects, ensuring resilience and shared stewardship.</p>
 
                     <p className="text-lg sm:text-xl font-medium text-[#084898] mt-10 mb-2 leading-relaxed">Through this dedicated approach, we deliver:</p>
 

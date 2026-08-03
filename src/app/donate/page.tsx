@@ -7,14 +7,11 @@ import Link from 'next/link';
 
 type Tab = 'funds' | 'inkind';
 
-const presetAmounts = [25, 50, 100, 150];
-
 export default function DonatePage() {
     const currentYear = new Date().getFullYear();
     const [activeTab, setActiveTab] = useState<Tab>('funds');
     const [fundStep, setFundStep] = useState<1 | 2>(1);
     const [frequency, setFrequency] = useState<'once' | 'monthly'>('once');
-    const [selectedAmount, setSelectedAmount] = useState<number | null>(25);
     const [customAmount, setCustomAmount] = useState('');
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [submitted, setSubmitted] = useState(false);
@@ -38,11 +35,8 @@ export default function DonatePage() {
     });
 
     const getAmount = () => {
-        if (selectedAmount === null) {
-            const parsed = parseFloat(customAmount);
-            return isNaN(parsed) ? 0 : parsed;
-        }
-        return selectedAmount;
+        const parsed = parseFloat(customAmount);
+        return isNaN(parsed) ? 0 : parsed;
     };
 
     const handleDonorChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -90,7 +84,6 @@ export default function DonatePage() {
     const reset = () => {
         setSubmitted(false);
         setFundStep(1);
-        setSelectedAmount(25);
         setCustomAmount('');
         setDonorInfo({
             firstName: '',
@@ -213,7 +206,7 @@ export default function DonatePage() {
                                                                 : 'text-gray-500 hover:text-gray-700'
                                                                 }`}
                                                         >
-                                                            Give once
+                                                            Once-off
                                                         </button>
                                                         <button
                                                             type="button"
@@ -223,25 +216,8 @@ export default function DonatePage() {
                                                                 : 'text-gray-500 hover:text-gray-700'
                                                                 }`}
                                                         >
-                                                            Give monthly
+                                                            Monthly
                                                         </button>
-                                                    </div>
-
-                                                    {/* Amount grid */}
-                                                    <div className="grid grid-cols-4 gap-3">
-                                                        {presetAmounts.map((amt) => (
-                                                            <button
-                                                                key={amt}
-                                                                type="button"
-                                                                onClick={() => { setSelectedAmount(amt); setCustomAmount(''); }}
-                                                                className={`py-3 rounded-lg text-sm font-semibold border transition-all cursor-pointer ${selectedAmount === amt
-                                                                    ? 'bg-[#084898] text-white border-[#084898]'
-                                                                    : 'bg-white text-gray-700 border-gray-200 hover:border-[#084898]/50'
-                                                                    }`}
-                                                            >
-                                                                ${amt}
-                                                            </button>
-                                                        ))}
                                                     </div>
 
                                                     {/* Custom amount */}
@@ -250,9 +226,10 @@ export default function DonatePage() {
                                                         <input
                                                             type="number"
                                                             min="1"
-                                                            placeholder="Other amount"
+                                                            required
+                                                            placeholder="Enter amount"
                                                             value={customAmount}
-                                                            onChange={(e) => { setCustomAmount(e.target.value); setSelectedAmount(null); }}
+                                                            onChange={(e) => setCustomAmount(e.target.value)}
                                                             className="w-full rounded-lg border border-gray-200 bg-white pl-8 pr-4 py-3 text-sm text-gray-900 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-[#084898]/30 focus:border-[#084898] transition-all"
                                                         />
                                                     </div>
@@ -387,7 +364,7 @@ export default function DonatePage() {
                                                 type="text"
                                                 name="companyName"
                                                 required
-                                                placeholder="Company / Organization name"
+                                                placeholder="Company/Organization name"
                                                 value={partnerInfo.companyName}
                                                 onChange={handlePartnerChange}
                                                 className="w-full rounded-lg border border-gray-200 bg-white px-4 py-3 text-sm text-gray-900 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-[#084898]/30 focus:border-[#084898] transition-all"
@@ -426,7 +403,7 @@ export default function DonatePage() {
                                             <input
                                                 type="text"
                                                 name="serviceType"
-                                                placeholder="Service / expertise offered (e.g. Engineering, Legal, Logistics)"
+                                                placeholder="Service/expertise offered (e.g. Engineering, Legal, Logistics)"
                                                 value={partnerInfo.serviceType}
                                                 onChange={handlePartnerChange}
                                                 className="w-full rounded-lg border border-gray-200 bg-white px-4 py-3 text-sm text-gray-900 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-[#084898]/30 focus:border-[#084898] transition-all"
@@ -436,7 +413,7 @@ export default function DonatePage() {
                                                 name="description"
                                                 required
                                                 rows={4}
-                                                placeholder="Tell us more about how your organization can partner with Alliant Forge..."
+                                                placeholder="Tell us more about how your organization can help"
                                                 value={partnerInfo.description}
                                                 onChange={handlePartnerChange}
                                                 className="w-full rounded-lg border border-gray-200 bg-white px-4 py-3 text-sm text-gray-900 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-[#084898]/30 focus:border-[#084898] transition-all resize-none"
@@ -466,8 +443,11 @@ export default function DonatePage() {
                             <div className="flex flex-col gap-4 text-base text-gray-300">
                                 <div className="flex items-center gap-4">
                                     <div className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center flex-shrink-0">
-                                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-[#9cb681]">
-                                            <path d="M12 2v20M2 12h20" />
+                                        {/* Target / bullseye — represents "Direct" impact */}
+                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-[#9cb681]">
+                                            <circle cx="12" cy="12" r="10" />
+                                            <circle cx="12" cy="12" r="5" />
+                                            <circle cx="12" cy="12" r="1.5" fill="currentColor" stroke="none" />
                                         </svg>
                                     </div>
                                     <span>Direct impact on community infrastructure</span>
@@ -485,7 +465,7 @@ export default function DonatePage() {
                                 </div>
                                 <div className="flex items-center gap-4">
                                     <div className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center flex-shrink-0">
-                                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-[#FCFCFE]">
+                                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-[#FCFCFE]">
                                             <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
                                         </svg>
                                     </div>

@@ -27,7 +27,7 @@ const heroSlides = [
   },
   {
     id: 3,
-    src: '/wind-turbine.webp',
+    src: '/hero/wind-turbine.webp',
     alt: 'Community development',
     objectPosition: '70% 75%',
     headline: 'Resilience by design',

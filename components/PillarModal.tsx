@@ -272,7 +272,9 @@ const pillarContent: Record<string, {
                     <p className="text-gray-600"><span className='font-semibold text-[#084898]'>• Technical Advisory & Infrastructure Upgrades:</span> Integrating wastewater recycling and NBS into urban planning, while managing essential facility repairs and upgrades to support long-term system reliability.</p>
                     <p className="text-gray-600"><span className='font-semibold text-[#084898]'>• Community Stewardship & Awareness:</span> Engaging residents in the design and upkeep of NBS systems, fostering ownership, accountability, and public awareness of health and environmental benefits.</p>
                     <p className="text-gray-600"><span className='font-semibold text-[#084898]'>• Resilient Funding Models:</span> Structuring blended financing combining donor support, municipal budgets, and private investment, to guarantee affordability and sustainability.</p>
-                    <p className="text-gray-600"><span className='font-semibold text-[#084898]'>• Capacity Building:</span> Partnering with universities, vocational colleges, and local cooperatives to train technicians, embed NBS into curricula, and create jobs through apprenticeships and certification pathways.</p>
+                    <p className="text-gray-600"><span className='font-semibold text-[#084898]'>• Capacity Building:</span> We partner with universities, vocational colleges, training institutions, and local cooperatives to embed Nature-based Solutions (NbS) into curricula. Through targeted training, apprenticeships, and certification pathways, we equip seasoned and aspiring engineers, environmental scientists, technicians, and project managers with essential skills while driving local job creation.</p>
+
+
 
                 </div>
 

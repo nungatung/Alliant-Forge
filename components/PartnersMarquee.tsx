@@ -6,9 +6,10 @@ import Image from 'next/image';
 // Add your logos here — adjust 'scale' to make any logo bigger or smaller
 const partnerLogos = [
   // { name: 'African Union', src: '/partners/au-logo.png', scale: 1 },
-  { name: 'APS Canada', src: '/partners/aps-canada.png', scale: 1 },
-  { name: 'APS Africa', src: '/partners/aps-africa-1.png', scale: 1 },
-  { name: 'Solcare', src: '/partners/solcare-2.png', scale: 1.5 },
+  { name: 'APS Canada', src: '/partners/aps-canada.png', scale: 1.1 },
+  { name: 'APS Africa', src: '/partners/aps-africa-1.png', scale: 1.1 },
+  { name: 'Inexertus', src: '/partners/inexertus-.png', scale: 1.1 },
+  { name: 'Solcare', src: '/partners/solcare-.png', scale: 1.5 },
 ];
 
 export default function PartnersMarquee() {
